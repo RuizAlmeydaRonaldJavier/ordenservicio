@@ -1,0 +1,75 @@
+body{
+     background: #F9F9F9;
+}
+
+.titulo-usuario{
+        background: #17a2b8;
+        color: white;
+        width: 100%;
+        padding: 5px 50px 1px 50px;
+    }
+
+.cont-from {
+    background: #fff;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.24);
+    -moz-box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.24);
+    box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.24);
+}
+
+.cont-tabla {
+    background: #fff;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.24);
+    -moz-box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.24);
+    box-shadow: 1px 1px 2px 2px rgba(0,0,0,0.24);
+}
+    .rTable {
+    display: table;
+    width: 100%;
+}
+.rTableRow {
+    display: table-row;
+}
+.rTableHeading {
+    display: table-header-group;
+    background-color: #ddd;
+}
+
+/**EFECTO TABLE*/
+.rTableCell {
+    display: table-cell;
+    padding: 3px 10px;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    text-align: center;
+}
+.rTableHead {
+    display: table-cell;
+       padding: 8px 10px;
+    border: 1px solid #999999;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
+    text-align: center;
+}
+.rTableCell:last-child {
+    border-right: 1px solid #ccc;
+}
+/*f*/
+.rTableHeading {
+    display: table-header-group;
+    background-color: #ddd;
+    font-weight: bold;
+}
+.rTableFoot {
+    display: table-footer-group;
+    font-weight: bold;
+    background-color: #ddd;
+}
+.rTableBody {
+    display: table-row-group;
+}
+.rTable form {
+    display: contents;
+}

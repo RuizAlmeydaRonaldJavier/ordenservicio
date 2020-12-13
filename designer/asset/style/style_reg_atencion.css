@@ -1,0 +1,33 @@
+body{
+    background-color: #F6F6F7; 
+    }
+
+.cont-from{
+    background-color: #F3F3F3;
+    height: 350px;
+    text-align: center;
+}
+
+.headermenu{
+    color: whitesmoke; 
+    height: 50px;
+    text-align: center;
+}
+
+.footermenu{
+    color: whitesmoke; 
+    height: 50px;
+    text-align: center;
+}
+
+.borde2{
+    background-color: olivedrab;
+    height: 50px;
+    text-align: center;
+}
+
+.borde3{
+    background-color: orangered;
+    height: 50px;
+    text-align: center;
+}

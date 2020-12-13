@@ -1,0 +1,21 @@
+body{
+    background-color: #F6F6F7; 
+    }
+
+.cont-from{
+    background-color: #F3F3F3;
+    height: 100%;
+}
+
+.headermenu{
+    color: whitesmoke; 
+    height: 50px;
+    text-align: center;
+}
+
+.footermenu{
+    color: whitesmoke; 
+    height: 50px;
+    text-align: center;
+}
+

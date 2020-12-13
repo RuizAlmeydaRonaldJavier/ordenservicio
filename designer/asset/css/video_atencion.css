@@ -1,0 +1,127 @@
+body   { 
+  width: 100%;
+  
+}
+header {
+  position: relative;
+  background-color: black;
+  height: 87vh;
+  min-height: 39rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.box-header, .box-footer{
+    background: #2e5eca;
+    color: white;
+}
+
+.box-header2, .box-footer2{
+    background: green;
+    color: white;
+}
+.box-header h4, .box-footer h4, .box-body h1{
+  padding: 0;
+  margin: 0;
+}
+
+.box-header2 h4, .box-footer2 h4, .box-body2 h1{
+  padding: 0;
+  margin: 0;
+}
+.box-body {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #CCC;
+    background: #ecffe7;
+}
+.box-body,.box-header, .box-footer{
+  text-align: center;
+}
+
+.box-body2,.box-header2, .box-footer2{
+  text-align: center;
+}
+.box-discapacitado {
+    background: url(https://image.flaticon.com/icons/png/512/8/8795.png) no-repeat;
+    background-size: contain;
+}
+.parpadea {
+  
+  animation-name: parpadeo;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name:parpadeo;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo{  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {  
+  0% { opacity: 1.0; }
+   50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@media (pointer: coarse) and (hover: none) {
+  header {
+    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+  }
+  header video {
+    display: none;
+  }
+}
+
+footer {
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  color: white;
+}

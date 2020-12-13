@@ -1,0 +1,422 @@
+@import url("https://use.fontawesome.com/releases/v5.0.11/css/all.css");
+
+/*
+ * container for positioning
+ */
+.notify {
+    position: fixed;
+    top: 73px;
+    left: 10px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 350px;
+}
+
+/* Positions
+========================================================================== */
+.notify-top-right,
+.notify-bottom-right {
+  left: auto;
+  right: 10px;
+}
+.notify-top-center,
+.notify-bottom-center {
+    left: 86%;
+    margin-left: -175px;
+}
+.notify-bottom-left,
+.notify-bottom-right,
+.notify-bottom-center {
+  top: auto;
+  bottom: 10px;
+}
+
+/* Responsiveness
+========================================================================== */
+/* Phones portrait and smaller */
+@media (max-width: 479px) {
+  /*
+     * Fit in small screen
+     */
+  .notify {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    margin: 0;
+  }
+}
+
+/* Sub-object: `notify-message`
+========================================================================== */
+.notify-message {
+  position: relative;
+  cursor: pointer;
+}
+
+.notify .alert-default {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+}
+
+/**/
+.form-control {
+    height: calc(1.3em + .70rem + 2px);
+    padding: .20rem .45rem;
+}
+
+.img-logo{
+      width: 225px;
+}
+/*MENU*/
+
+.bg-darkl{
+  background:#17a2b8;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+}
+
+
+.bg-darkl a{
+  color: #fff;
+}
+
+.menu-adm {
+    background: #fff;
+    box-shadow: 7px 0 60px rgba(0,0,0,0.05);
+}
+
+.menu-adm li {
+    cursor: pointer;
+    padding: 7px;
+    color: #5a5959;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+
+.menu-adm li:hover {
+    background: #e0f3ff;
+}
+
+.menu-adm li a{
+   text-decoration: none;
+       color: #343a40;
+}
+
+
+#sidebar {
+    padding: 0;
+    width: 265px;
+}
+
+.divider-li {
+    background: #17a2b8;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    padding-left: 5px;
+}
+
+.bg-primary{
+
+}
+
+.bg-text{
+
+}
+
+/**/
+.td-body {
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+#table-productos {
+    width: 100%;
+}
+/**/
+
+body, html {
+  height:100%;
+}
+
+/*Tablas*/
+#table-productos{
+  width: 100%;
+}
+#table-productos label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: .2rem;
+}
+
+#td-table--{
+    color: white;
+    text-transform: uppercase;
+    font-family: monospace;
+}
+
+#table-productos h4 {
+    padding: 6px 5px 6px 5px;
+    margin: 0;
+    font-size: 15px;
+    margin-bottom: 10px;
+    background: #263544;
+}
+/**/
+.user-panel {
+    display: table;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px 10px 20px 10px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 10px;
+}
+.user-panel>.info {
+    padding: 5px 5px 5px 15px;
+    line-height: 1;
+    position: absolute;
+    left: 55px;
+}
+.user-panel>.image>img {
+    width: 100%;
+    max-width: 45px;
+    height: auto;
+}
+.user-panel>.info, .user-panel>.info>a {
+    color: #292929;
+    font-size: 13px;
+    text-decoration: none;
+}
+.user-panel>.info>p {
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+.user-panel>.info>a>i {
+    color: #34ff34;
+}
+
+.divider-li i {
+    color: white;
+    margin-right: 8px;
+    margin-left: 5px;
+}
+
+.divider-li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+
+/*
+ * Off Canvas sidebar at medium breakpoint
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 992px) {
+
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -48%;
+  }
+
+  .row-offcanvas-left.active {
+    left: 50%;
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 33%;
+    height: 100%;
+  }
+}
+
+/*
+ * Off Canvas wider at sm breakpoint
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 34em) {
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -45%;
+  }
+
+  .row-offcanvas-left.active {
+    left: 45%;
+    margin-left: -6px;
+  }
+  
+  .sidebar-offcanvas {
+    width: 45%;
+  }
+}
+
+.card {
+    overflow:hidden;
+}
+
+.card-body .rotate {
+    z-index: 8;
+    float: right;
+    height: 100%;
+}
+
+.card-body .rotate i {
+    color: rgba(20, 20, 20, 0.15);
+    position: absolute;
+    left: 0;
+    left: auto;
+    right: -10px;
+    bottom: 0;
+    display: block;
+    -webkit-transform: rotate(-44deg);
+    -moz-transform: rotate(-44deg);
+    -o-transform: rotate(-44deg);
+    -ms-transform: rotate(-44deg);
+    transform: rotate(-44deg);
+}
+
+
+.titulo-usuario{
+    background:#17a2b8;
+    color: white;
+    width: 100%;
+    padding: 5px 50px 1px 50px;
+  }
+
+  nav > .nav.nav-tabs{
+
+    border: none;
+    color:#fff;
+    background:#dae6d6;
+    border-radius:0;
+
+  }
+  nav > div a.nav-item.nav-link,
+  nav > div a.nav-item.nav-link.active
+  {
+    border: none;
+    padding: 18px 25px;
+    color:#fff;
+    background:#83e4b2;
+    border-radius:0;
+  }
+
+  nav > div a.nav-item.nav-link.active:after
+  {
+    content: "";
+    position: relative;
+    bottom: -60px;
+    left: -10%;
+    border: 15px solid transparent;
+    border-top-color: #3ac47d ;
+  }
+  .tab-content{
+    background: #fdfdfd;
+    line-height: 25px;
+    border: 1px solid #ddd;
+    /* border-top:5px solid #35d2a6; */
+    /* border-bottom:5px solid #35d2a6; */
+    padding:22px 31px;
+
+  }
+
+  nav > div a.nav-item.nav-link:hover,
+  nav > div a.nav-item.nav-link:focus
+  {
+    border: none;
+    background: #3ac47d;
+    color:#fff;
+    border-radius:0;
+    transition:background 0.20s linear;
+  }
+
+  .titulo-persona{
+        background: #17a2b8;
+        color: white;
+        width: 100%;
+        padding: 5px 50px 1px 100px;
+    }
+
+input[onkeyup]{
+    text-transform: uppercase;
+}
+
+
+
+
+.containers {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.containers input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.containers:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containers input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.containers input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.containers .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

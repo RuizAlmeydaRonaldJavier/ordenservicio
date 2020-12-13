@@ -1,0 +1,32 @@
+body{
+    background-color: #F6F6F7; 
+    }
+
+.cont-tabla{
+    background-color: #F3F3F3;
+    height: 100%;
+}
+
+.headermenu{
+    color: whitesmoke; 
+    height: 50px;
+    text-align: center;
+}
+
+.footermenu{
+    color: whitesmoke; 
+    height: 50px;
+    text-align: center;
+}
+
+.borde2{
+    background-color: olivedrab;
+    height: 50px;
+    text-align: center;
+}
+
+.borde3{
+    background-color: orangered;
+    height: 50px;
+    text-align: center;
+}
