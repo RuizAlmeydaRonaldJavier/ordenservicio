@@ -9,6 +9,34 @@
 			$this->pdo = $dba->getConexion();
 		}
 
+		//regsitrar proveedor
+
+		public function Registrar_proveedor(Proveedor $proveedor)
+	{
+		try
+		{
+			$statement = $this->pdo->prepare("CALL up_registrar_proveedor(?,?,?,?,?)");
+
+
+			$tempRazonsocial 	= $proveedor->__GET('razon_social');
+			$tempProveedor 		= $proveedor->__GET('ruc');
+			$tempDireccion 		= $proveedor->__GET('dirección');
+			$tempCorreo 		= $proveedor->__GET('correo_electronico');
+			$tempTelefono 		= $proveedor->__GET('telefono');
+
+			$statement->bindParam(1, $tempRazonsocial);
+			$statement->bindParam(2, $tempProveedor);
+			$statement->bindParam(3, $tempDireccion);
+			$statement->bindParam(4, $tempCorreo);
+			$statement->bindParam(5, $tempTelefono);
+			$statement->execute();
+
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
 		// Listar proveedores
 		public function listarProveedor()
 		{

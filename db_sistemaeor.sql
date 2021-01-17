@@ -322,7 +322,7 @@ CREATE PROCEDURE up_registrar_proveedor
   IN _ruc                   VARCHAR(11),
   IN _dirección             VARCHAR(80),
   IN _correo_electronico    VARCHAR(60),
-  IN _telefono              VARCHAR(9)
+  IN _telefono              VARCHAR(9),
 ) BEGIN
   INSERT INTO proveedores (razon_social, ruc, dirección, correo_electronico, telefono) VALUES 
   (_razon_social, _ruc, _dirección, _correo_electronico, _telefono);

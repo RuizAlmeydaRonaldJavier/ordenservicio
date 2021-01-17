@@ -14,26 +14,24 @@ require_once '../../DAO/proveedorDAO.php';
 //importando header
 require '../layout/header.php';
 
-$proveedor = new Proveedor();
-$proveedorDAO = new ProveedorDAO();
+$Proveedor = new Proveedor();
+$ProveedorDAO = new ProveedorDAO();
 
 $mensajeFinalS = file_get_contents('../msj/mensaje_general.php');
 
 if(isset($_POST['btnGuardar']))
 {
 
-	/*$proveedor->__SET('documento',            $_POST['inp_documento']);
-	$proveedor->__SET('nombre',               $_POST['inp_nombre']);
-	$proveedor->__SET('apellido_paterno',     $_POST['inp_apellido_paterno']);
-	$proveedor->__SET('apellido_materno',     $_POST['inp_apellido_materno']);
-    $proveedor->__SET('fecha_nacimiento',     $_POST['date_fecha_nacimiento']);
-    $proveedor->__SET('correo',               $_POST['inp_correo']);
-    $proveedor->__SET('sexo',                 $_POST['inp_sexo']);
+	$Proveedor->__SET('razon_social',          $_POST['inp_razon']);
+	$Proveedor->__SET('ruc',                   $_POST['inp_ruc']);
+	$Proveedor->__SET('dirección',             $_POST['inp_direcc']);
+	$Proveedor->__SET('correo_electronico',    $_POST['inp_correo']);
+    $Proveedor->__SET('telefono',              $_POST['inp_telefono']);
 
-    $proveedorDAO->Registrar_per($proveedor);
+    $ProveedorDAO->Registrar_proveedor($Proveedor);
 
     echo $mensajeFinalS;
-    DBAccess::rederigir("agregar_persona.php");*/
+    DBAccess::rederigir("registrarProveedor.php");
 }
 ?>
 <!-- ************************************************* CONTENIDO ******************************************************* -->
@@ -51,62 +49,49 @@ if(isset($_POST['btnGuardar']))
                   <input type="text" class="form-control" name="" id="">
               </div> -->
               
-              <div class="row">
+          
+
+            <div class="row">
+                <div class="col-4"> 
+                    <div class="form-group">
+                        <strong style="color: #17a2b8;">Razon Social:</strong>
+                        <input type="text" class="form-control" id="NOMBRE" name="inp_razon" onkeyup="mayus(this);" required>
+                    </div>
+                </div>
+
                   <div class="col-4"> 
                     <div class="form-group">
-                        <strong style="color: #17a2b8;">Numero Documento:</strong>
-                        <input type="text" class="form-control" name="inp_documento" maxlength="8" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required>
+                        <strong style="color: #17a2b8;">Ruc:</strong>
+                        <input type="text" class="form-control" name="inp_ruc" maxlength="10" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required>
+                    </div>
+                </div>
+
+                <div class="col-4"> 
+                    <div class="form-group">
+                        <strong style="color: #17a2b8;">Direccion:</strong>
+                        <input type="text" class="form-control" id="APELLIDOP" name="inp_direcc" onkeyup="mayus(this);" required>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-4"> 
-                    <div class="form-group">
-                        <strong style="color: #17a2b8;">Nombre:</strong>
-                        <input type="text" class="form-control" id="NOMBRE" name="inp_nombre" onkeyup="mayus(this);" required>
-                    </div>
-                </div>
-                <div class="col-4"> 
-                    <div class="form-group">
-                        <strong style="color: #17a2b8;">Apellido Paterno:</strong>
-                        <input type="text" class="form-control" id="APELLIDOP" name="inp_apellido_paterno" onkeyup="mayus(this);" required>
-                    </div>
-                </div>
-                <div class="col-4">  
-                    <div class="form-group">
-                        <strong style="color: #17a2b8;">Apellido Materno:</strong>
-                        <input type="text" class="form-control" id="APELLIDOM" name="inp_apellido_materno" onkeyup="mayus(this);" required>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-4"> 
-                    <div class="form-group">
-                        <strong style="color: #17a2b8;">Fecha Nacimiento:</strong>
-                        <input type="date" class="form-control" name="date_fecha_nacimiento" required>
-                    </div>
-                </div>   
                 <div class="col-4">  
                     <div class="form-group">
                         <strong style="color: #17a2b8;">Correo:</strong>
-                        <input id="email" type="email" class="form-control" name="inp_correo" data-validation="email">
+                        <input id="email" type="email" class="form-control" name="inp_correo" data-validation="email" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required>
                     </div>
-                </div>        
+                </div>
+
                 <div class="col-4"> 
-                    <div class="form-group"> 
-                        <strong style="color: #17a2b8;">Sexo:</strong>
-                        <select class="form-control" name="inp_sexo" id="sel1">
-                            <option value="MASCULINO">MASCULINO</option>
-                            <option value="FEMENINO">FEMENINO</option>
-                        </select>                
+                    <div class="form-group">
+                        <strong style="color: #17a2b8;">Telefono:</strong>
+                        <input type="text" class="form-control" name="inp_telefono" maxlength="9" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required>
                     </div>
                 </div>
             </div>         
 
             <button name="btnGuardar" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
-            <a href="./lista_atencion.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
+            <a href="./listarProveedor.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
         </form>
         <br>                    
     </div>
