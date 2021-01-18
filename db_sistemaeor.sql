@@ -141,6 +141,10 @@ CREATE TABLE metas
   c8            VARCHAR(5) NOT NULL,
   c9            VARCHAR(7) NOT NULL,
   c10           VARCHAR(100) NOT NULL,
+  dpto          VARCHAR(25) NOT NULL,
+  prov          VARCHAR(25) NOT NULL,
+  dist          VARCHAR(25) NOT NULL,
+  und_medida    VARCHAR(10) NOT NULL,
   fecha_registro        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   estado                VARCHAR(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (id_meta)
@@ -322,7 +326,7 @@ CREATE PROCEDURE up_registrar_proveedor
   IN _ruc                   VARCHAR(11),
   IN _dirección             VARCHAR(80),
   IN _correo_electronico    VARCHAR(60),
-  IN _telefono              VARCHAR(9),
+  IN _telefono              VARCHAR(9)
 ) BEGIN
   INSERT INTO proveedores (razon_social, ruc, dirección, correo_electronico, telefono) VALUES 
   (_razon_social, _ruc, _dirección, _correo_electronico, _telefono);
@@ -339,3 +343,27 @@ CREATE PROCEDURE up_registrar_producto
   INSERT INTO productos (codigo, descripcion, id_unidadMedida) VALUES 
   (_codigo, _descripcion, _id_unidadMedida);
 END $$
+
+DELIMITER $$
+CREATE PROCEDURE up_registrar_meta
+(
+  IN _c1            VARCHAR(4), 
+  IN _c2            VARCHAR(4), 
+  IN _c3            VARCHAR(7),
+  IN _c4            VARCHAR(7), 
+  IN _c5            VARCHAR(2),
+  IN _c6            VARCHAR(3),
+  IN _c7            VARCHAR(4),
+  IN _c8            VARCHAR(5), 
+  IN _c9            VARCHAR(7),
+  IN _c10           VARCHAR(100),
+  IN _dpto          VARCHAR(25), 
+  IN _prov          VARCHAR(25),  
+  IN _dist          VARCHAR(25), 
+  IN _und_medida    VARCHAR(10)
+
+) BEGIN
+  INSERT INTO metas (c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, dpto, prov, dist, und_medida) VALUES 
+  (_c1, _c2, _c3, _c4, _c5 ,_c6, _c7, _c8, _c9, _c10, _dpto, _prov, _dist, _und_medida);
+END $$
+

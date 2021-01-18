@@ -93,8 +93,8 @@
 							<div class="float-left info ml-4">
 								<p><?php echo $_SESSION['usuario'] ?></p>
 								<strong id="u-nombre"></strong>
-								<a><i class="fas fa-bell"></i> ADMINISTRADOR</a>
-							</div>
+<!-- 								<a><i class="fas fa-bell"></i> ADMINISTRADOR</a>
+ -->							</div>
 						</div>
 						<div class="divider-li pt-2 pb-2 mt-2 menu-titulo">
 							<i class="fas fa-boxes"></i>GESTION DE ÓRDENES DE SERVICIO

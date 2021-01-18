@@ -9,6 +9,51 @@
 			$this->pdo = $dba->getConexion();
 		}
 
+		//regsitrar meta
+
+		public function Registrar_meta(Meta $meta)
+	{
+		try
+		{
+			$statement = $this->pdo->prepare("CALL up_registrar_meta (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			$tempc1 		= $meta->__GET('c1');
+			$tempc2 		= $meta->__GET('c2');
+			$tempc3 		= $meta->__GET('c3');
+			$tempc4			= $meta->__GET('c4');
+			$tempc5 		= $meta->__GET('c5');
+			$tempc6 		= $meta->__GET('c6');
+			$tempc7 		= $meta->__GET('c7');
+			$tempc8 		= $meta->__GET('c8');
+			$tempc9 		= $meta->__GET('c9');
+			$tempc10 		= $meta->__GET('c10');
+			$tempdpto 		= $meta->__GET('dpto');
+			$tempprov 		= $meta->__GET('prov');
+			$tempdist 		= $meta->__GET('dist');
+			$tempund_medida = $meta->__GET('und_medida');
+
+			$statement->bindParam(1, $tempc1);
+			$statement->bindParam(2, $tempc2);
+			$statement->bindParam(3, $tempc3);
+			$statement->bindParam(4, $tempc4);
+			$statement->bindParam(5, $tempc5);
+			$statement->bindParam(6, $tempc6);
+			$statement->bindParam(7, $tempc7);
+			$statement->bindParam(8, $tempc8);
+			$statement->bindParam(9, $tempc9);
+			$statement->bindParam(10, $tempc10);
+			$statement->bindParam(11, $tempdpto);
+			$statement->bindParam(12, $tempprov);
+			$statement->bindParam(13, $tempdist);
+			$statement->bindParam(14, $tempund_medida);
+
+			$statement->execute();
+
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
 		// Listar metas
 		public function listarMeta()
 		{

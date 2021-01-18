@@ -78,7 +78,7 @@ if(isset($_POST['btnGuardar']))
                 <div class="col-4">  
                     <div class="form-group">
                         <strong style="color: #17a2b8;">Correo:</strong>
-                        <input id="email" type="email" class="form-control" name="inp_correo" data-validation="email" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required>
+                        <input id="email" type="email" class="form-control" name="inp_correo" data-validation="email" required>
                     </div>
                 </div>
 

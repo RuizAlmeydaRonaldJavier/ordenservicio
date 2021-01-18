@@ -22,7 +22,7 @@
       <div class="titulo-usuario mt-3 mb-3">
         <h5 class="text-center"><i class="fas fa-user-friends"></i> LISTA DE METAS PRESUPUESTALES</h5>
       </div>
-      <a href="registrarProveedor.php" class="btn btn-info icon-left mb-3 alinear-derecha">Registar <span class="fas fa-plus-circle"></span></a>
+      <a href="registrarMeta.php" class="btn btn-info icon-left mb-3 alinear-derecha">Registrar <span class="fas fa-plus-circle"></span></a>
       <div class="table-responsive mb-3">
         <table id="datatable" class="table table-hover table-sm" style="text-align:center; border-collapse: collapse;">
           <thead class="thead-dark" style='font-size: 15px;'>
