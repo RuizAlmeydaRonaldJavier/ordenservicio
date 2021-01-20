@@ -372,3 +372,19 @@ CREATE PROCEDURE up_listar_unidad_medida(
 )BEGIN
   SELECT id_unidadMedida, descripcion, fecha_registro, estado FROM unidades_medidas; 
 END $$
+
+DELIMITER $$
+CREATE PROCEDURE up_buscar_ruc_ajax(
+    IN IN_ruc VARCHAR(11)
+)
+BEGIN
+
+    IF IN_ruc IS NOT NULL AND IN_ruc != '' THEN 
+       
+       SELECT * FROM proveedores WHERE ruc = IN_ruc;
+    
+    ELSE
+          signal sqlstate '45000' set message_text = 'Ingrese los datos de manera correcta!!!';
+    END IF;
+
+END $$

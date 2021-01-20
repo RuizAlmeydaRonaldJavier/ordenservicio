@@ -70,12 +70,15 @@ if(isset($_POST['btnGuardar']))
             <div class="col-5">
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Ruc:</label>
+
                 <div class="col-sm-5 pl-0">
                   <div class="input-group">
-                  <input id="inpDocumentoAgrUsu" type="text" class="form-control form-control-sm" maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
+                  <input id="inpAgrProve" type="text" class="form-control form-control-sm" maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
+
                   <input name="inpIdPersonaAgrUsu" id="inpIdPersonaAgrUsu" type="hidden">
+                  
                   <div class="input-group-append">
-                    <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarPersonaAgrUsu" id="btnBuscarPersonaAgrUsu">Buscar</button>
+                    <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc">Buscar</button>
                   </div>
                 </div>
                 </div>
@@ -89,7 +92,7 @@ if(isset($_POST['btnGuardar']))
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm pr-0">Razón Social:</label>
                 <div class="col-sm-9 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+                  <input type="text" class="form-control form-control-sm" id="inprazon_social">
                 </div>
               </div>
             </div>
@@ -101,7 +104,7 @@ if(isset($_POST['btnGuardar']))
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Dirección:</label>
                 <div class="col-sm-9 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+                  <input type="text" class="form-control form-control-sm" id="inpdireccion">
                 </div>
               </div>
             </div>

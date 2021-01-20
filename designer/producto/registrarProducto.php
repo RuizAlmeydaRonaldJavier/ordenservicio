@@ -85,8 +85,18 @@ $resultado_unidades = $unidades_medidasDAO->listarUnidadMedida();
                   </select>
 
               </div>
+
           </div>
-            </div>         
+            </div>
+            <!-- <div class="row">
+                  
+                  <div class="col-3"> 
+                    <div class="form-group">
+                        <strong style="color: #17a2b8;">Cantidad:</strong>
+                        <input type="text" class="form-control" name="inp_des" maxlength="25" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required>
+                    </div>
+                </div>
+              </div>  -->        
 
             <button name="btnGuardar" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
             <a href="./listarProveedor.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>

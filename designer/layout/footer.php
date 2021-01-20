@@ -16,6 +16,62 @@
 
 
 
+<script type="text/javascript">
+    
+function buscarRucProveedor() {
+
+            var parametros = {
+                "ruc_prove": $('#inpAgrProve').val()
+            };
+
+            $.ajax({
+                data: parametros,
+                url: '../ajax/buscar_proveedor.php',
+                type: 'post',
+                beforeSend: function() {
+                    $("#resultado").html("Procesando, espere por favor...");
+                },
+                success: function(data) {
+
+                    if (data.success === 1) {
+                        $('#inpAgrProve').css({'border':'1px solid green'});
+
+                        $('#inprazon_social').val("" + data.data.razon_social);
+                        $('#inpruc').val(""+data.data.ruc);
+                        $('#inpdireccion').val("" + data.data.dirección);
+
+                        $('#inpIdProveedorAgrMan').val("" + data.data.id_proveedor); 
+
+                    } else {
+                        $('#inpAgrProve').css({'border':'1px solid red'});
+                        alert("Proveedor no encontrado");
+                        $('#pr_razon_social').val("");
+                        $('#pr_ruc').val("");
+                        $('#pr_dirección').val("");
+                        
+                    }
+
+                },
+                error: function() {
+
+                }
+            });
+        }
+
+        $('#btnBuscarRuc').click(function(e){
+            var value = $("#inpAgrProve").val().length;
+            if (value>0) {
+                buscarRucProveedor();
+            }else{
+                alert("Ingrese numero de Ruc");
+            }
+        });
+
+
+
+
+</script>
+
 <!--<script type="text/javascript">
 
     var time = 2000;

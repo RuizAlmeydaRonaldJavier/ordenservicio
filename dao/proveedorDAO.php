@@ -67,5 +67,41 @@
 				die($e->getMessage());
 			}
 		}
+
+		public function Buscar_proveedor_ajax(Proveedor $proveedor){
+		try
+		{
+			$result = array();
+
+			$statement = $this->pdo->prepare("CALL up_buscar_ruc_ajax(?)");
+			
+			$tempRuc = $proveedor->__GET('ruc');
+
+			$statement->bindParam(1,$tempRuc);
+
+			$statement->execute();
+
+			foreach($statement->fetchAll(PDO::FETCH_OBJ) as $r)
+			{
+				$ruc = new Proveedor();
+
+				$ruc->__SET('id_proveedor',  $r->id_proveedor);
+				$ruc->__SET('razon_social',  $r->razon_social);
+				$ruc->__SET('ruc',           $r->ruc);
+				$ruc->__SET('dirección',     $r->dirección);
+
+				$result[] = $ruc;
+			}
+
+			return $result;
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
+
+
 	}
 ?>
