@@ -71,12 +71,12 @@ if(isset($_POST['btnGuardar']))
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Ruc:</label>
 
-                <div class="col-sm-5 pl-0">
+                <div class="col-sm-7 pl-0">
                   <div class="input-group">
                   <input id="inpAgrProve" type="text" class="form-control form-control-sm" maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
 
                   <input name="inpIdPersonaAgrUsu" id="inpIdPersonaAgrUsu" type="hidden">
-                  
+
                   <div class="input-group-append">
                     <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc">Buscar</button>
                   </div>
