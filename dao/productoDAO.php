@@ -9,6 +9,31 @@
 			$this->pdo = $dba->getConexion();
 		}
 
+		//registrar ´producto
+		public function Registrar_producto(Producto $producto)
+	{
+		try
+		{
+			$statement = $this->pdo->prepare("CALL up_registrar_producto(?,?,?)");
+
+
+			$tempCodigo 		= $producto->__GET('codigo');
+			$tempDescripcion 	= $producto->__GET('descripcion');
+			$tempUnidadM 		= $producto->__GET('id_unidadMedida');
+
+			$statement->bindParam(1, $tempCodigo);
+			$statement->bindParam(2, $tempDescripcion);
+			$statement->bindParam(3, $tempUnidadM);
+
+			$statement->execute();
+
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
+
 		// Listar productos
 		public function listarProducto()
 		{

@@ -10,7 +10,9 @@
 
 		public function __construct()
 		{
-			$this->id_unidadMedida = new UnidadMedida();
+
+					$this->id_unidadMedida = new UnidadMedida();
+
 		}
 
 		public function __GET($x)
@@ -23,4 +25,5 @@
 		  return $this->$x = $y;
 		}
 	}
+	
 ?>

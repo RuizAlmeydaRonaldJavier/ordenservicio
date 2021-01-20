@@ -367,3 +367,8 @@ CREATE PROCEDURE up_registrar_meta
   (_c1, _c2, _c3, _c4, _c5 ,_c6, _c7, _c8, _c9, _c10, _dpto, _prov, _dist, _und_medida);
 END $$
 
+DELIMITER $$
+CREATE PROCEDURE up_listar_unidad_medida(
+)BEGIN
+  SELECT id_unidadMedida, descripcion, fecha_registro, estado FROM unidades_medidas; 
+END $$

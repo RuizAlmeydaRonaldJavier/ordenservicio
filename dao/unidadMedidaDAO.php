@@ -15,7 +15,7 @@
 			try
 			{
 				$result = array();
-				$statement = $this->pdo->prepare("CALL UP_LISTAR_UNIDAD_MEDIDA()");
+				$statement = $this->pdo->prepare("CALL up_listar_unidad_medida()");
 				$statement->execute();
 
 				foreach($statement->fetchAll(PDO::FETCH_OBJ) as $r)
