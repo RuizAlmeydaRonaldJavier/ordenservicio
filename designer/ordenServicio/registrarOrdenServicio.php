@@ -11,6 +11,9 @@ require_once '../../DAL/DBAccess.php';
 require_once '../../BOL/proveedor.php';
 require_once '../../DAO/proveedorDAO.php';
 
+require_once '../../BOL/tipoFactura.php';
+require_once '../../DAO/tipoFacturaDAO.php';
+
 //importando header
 require '../layout/header.php';
 
@@ -35,6 +38,12 @@ if(isset($_POST['btnGuardar']))
     echo $mensajeFinalS;
     DBAccess::rederigir("agregar_persona.php");*/
 }
+
+$tipos_facturas = new TipoFactura();
+$tipos_facturasDAO = new TipoFacturaDAO();
+
+$resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
+
 ?>
 <!-- ************************************************* CONTENIDO ******************************************************* -->
 <br> 
@@ -91,9 +100,11 @@ if(isset($_POST['btnGuardar']))
                 <label for="inputPassword" class="col-sm-5 col-form-label col-form-label-sm text-right">Tipo factura:</label>
                 <div class="col-sm-7 pl-0">
                   <select class="form-control btn-sm" id="id_tipofactura" name="id_tipofactura">
-                    <option>Sin retención</option>
-                    <option>Con retención</option>
-                    <option>IGV incluido</option>             
+                    <?php foreach($resultado_tipoFactura as $r_g): ?>
+                          <option value="<?php echo $r_g->__GET('id_tipoFactura').$r_g->__GET('porcentaje');?>">
+                              <?php echo $r_g->__GET('descripcion');?>
+                          </option>
+                      <?php endforeach;?>             
                   </select>
                 </div>
               </div>

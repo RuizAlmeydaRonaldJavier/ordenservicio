@@ -388,3 +388,23 @@ BEGIN
     END IF;
 
 END $$
+
+...............
+CREATE TABLE tipos_facturas
+(
+  id_tipoFactura             INT(11) NOT NULL AUTO_INCREMENT,
+  descripcion           VARCHAR(20) NOT NULL,
+  porcentaje              INT(11) NOT NULL,
+  fecha_registro            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  estado                    VARCHAR(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (id_tipoFactura)
+);
+
+DELIMITER $
+CREATE PROCEDURE up_listar_tipo_factura(
+)BEGIN
+  SELECT * FROM tipos_facturas; 
+END $$
+
+INSERT INTO tipos_facturas (id_tipoFactura, descripcion, porcentaje) VALUES (null, 'Sin retención', '0'),
+(null, 'Con retención', '8'), (null, 'IGV disgregado', '18'), (null, 'IGV incluido', '18'), (null, 'Sin IGV', '0');
