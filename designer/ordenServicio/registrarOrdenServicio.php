@@ -45,7 +45,7 @@ if(isset($_POST['btnGuardar']))
         <div class="titulo-usuario mt-3 mb-3">
           <h5 class="text-center"><i class="fas fa-user-friends"></i> REGISTRAR ORDEN DE SERVICIO</h5>
         </div>
-        <div class="pt-2 pr-2 pl-2 mb-2 marco">
+        <div class="pt-3 pr-2 pl-2 mb-2 pb-1 marco">
           <div class="row campo-altura">
             <div class="col-5">
               <div class="form-group row">
@@ -59,8 +59,8 @@ if(isset($_POST['btnGuardar']))
             </div>
             <div class="col-3">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Fecha:</label>
-                <div class="col-sm-9">
+                <label for="inputPassword" class="col-sm-5 col-form-label col-form-label-sm text-right">Fecha:</label>
+                <div class="col-sm-7 pl-0">
                   <input type="text" class="form-control form-control-sm" id="NOMBRE" name="inp_nombre" onkeyup="mayus(this);" required>
                 </div>
               </div>
@@ -84,7 +84,19 @@ if(isset($_POST['btnGuardar']))
                 </div>
               </div>
             </div>
-            <div class="col-7">
+            <div class="col-4">
+            </div>
+            <div class="col-3">
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-5 col-form-label col-form-label-sm text-right">Tipo factura:</label>
+                <div class="col-sm-7 pl-0">
+                  <select class="form-control btn-sm" id="id_tipofactura" name="id_tipofactura">
+                    <option>Sin retención</option>
+                    <option>Con retención</option>
+                    <option>IGV incluido</option>             
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row campo-altura">
@@ -96,7 +108,15 @@ if(isset($_POST['btnGuardar']))
                 </div>
               </div>
             </div>
-            <div class="col-7">
+            <div class="col-4">
+            </div>
+            <div class="col-3">
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-5 col-form-label col-form-label-sm pr-0"></label>
+                <div class="col-sm-7 pl-0">
+                  <input type="text" class="form-control form-control-sm" id="inprazon_social">
+                </div>
+              </div>
             </div>
           </div>
           <div class="row campo-altura">
@@ -112,7 +132,7 @@ if(isset($_POST['btnGuardar']))
             </div>
           </div>
         </div>
-        <div class="pt-2 pr-2 pl-2 mb-2 marco">
+        <div class="pt-3 pr-2 pl-2 mb-2 pb-1 marco">
           <div class="row campo-altura">
             <div class="col-12">
               <div class="form-group row">
@@ -133,8 +153,18 @@ if(isset($_POST['btnGuardar']))
               </div>
             </div>
           </div>
+          <div class="row campo-altura">
+          <div class="col-12">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm">Observación:</label>
+              <div class="col-sm-10 pl-0">
+                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="pt-2 pr-2 pl-2 mb-2 marco">
+        </div>
+        <div class="pt-3 pr-2 pl-2 mb-2 pb-1 marco">
         <div class="row">
           <div class="col-12">
             <div class="form-group">
@@ -143,12 +173,87 @@ if(isset($_POST['btnGuardar']))
             </div>
           </div>
         </div>
+
         <div class="row campo-altura">
-          <div class="col-8">
+          <div class="col-5">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Meta:</label>
+              <div class="col-sm-5 pl-0">
+                <div class="input-group">
+                  <input id="inpAgrProve" type="text" class="form-control form-control-sm" maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
+                  <input name="inpIdPersonaAgrUsu" id="inpIdPersonaAgrUsu" type="hidden">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc">Buscar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
           </div>
           <div class="col-4">
             <div class="form-group row">
               <label for="inputPassword" class="col-sm-6 col-form-label col-form-label-sm text-right">Importe:</label>
+              <div class="col-sm-6 pl-0">
+                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row campo-altura">
+          <div class="col-5">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
+              <div class="col-sm-5 pl-0">
+                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-4">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-6 col-form-label col-form-label-sm text-right">Sub Total:</label>
+              <div class="col-sm-6 pl-0">
+                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row campo-altura">
+          <div class="col-5">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
+              <div class="col-sm-5 pl-0">
+                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-4">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-6 col-form-label col-form-label-sm text-right">I.G.V:</label>
+              <div class="col-sm-6 pl-0">
+                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row campo-altura">
+          <div class="col-5">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
+              <div class="col-sm-5 pl-0">
+                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-4">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-6 col-form-label col-form-label-sm text-right">Importe neto:</label>
               <div class="col-sm-6 pl-0">
                 <input type="text" class="form-control form-control-sm" id="inputPassword">
               </div>
@@ -172,7 +277,7 @@ if(isset($_POST['btnGuardar']))
           </div>
           <div class="col-4">
             <div class="form-group row">
-              <label for="inputPassword" class="col-sm-6 col-form-label col-form-label-sm text-right">Importe neto S/.:</label>
+              <label for="inputPassword" class="col-sm-6 col-form-label col-form-label-sm text-right">Importe neto:</label>
               <div class="col-sm-6 pl-0">
                 <input type="text" class="form-control form-control-sm" id="inputPassword">
               </div>
@@ -180,47 +285,6 @@ if(isset($_POST['btnGuardar']))
           </div>
         </div>
       </div>
-
-
-        <div class="row campo">
-          <div class="col-3">
-            <div class="form-group">
-              <strong style="color: #17a2b8;">Ruc:</strong>
-              <div class="input-group">
-                <input id="inpDocumentoAgrUsu" type="text" class="form-control" style="padding: 18px;" maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
-                <input name="inpIdPersonaAgrUsu" id="inpIdPersonaAgrUsu" type="hidden">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-info" type="button" name="btnBuscarPersonaAgrUsu" id="btnBuscarPersonaAgrUsu">Buscar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-9">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-4">
-            <div class="form-group">
-              <strong style="color: #17a2b8;">Fecha Nacimiento:</strong>
-              <input type="date" class="form-control" name="date_fecha_nacimiento" required>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="form-group">
-              <strong style="color: #17a2b8;">Correo:</strong>
-              <input id="email" type="email" class="form-control" name="inp_correo" data-validation="email">
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="form-group">
-              <strong style="color: #17a2b8;">Sexo:</strong>
-              <select class="form-control" name="inp_sexo" id="sel1">
-                <option value="MASCULINO">MASCULINO</option>
-                <option value="FEMENINO">FEMENINO</option>
-              </select>
-            </div>
-          </div>
-        </div>
         <button name="btnGuardar" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
         <a href="./lista_atencion.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
       </form>

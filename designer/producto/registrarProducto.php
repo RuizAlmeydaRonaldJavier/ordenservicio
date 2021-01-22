@@ -32,7 +32,7 @@ if(isset($_POST['btnGuardar']))
     $ProductoDAO->Registrar_producto($Producto);
 
     echo $mensajeFinalS;
-    DBAccess::rederigir("registrarProducto.php");
+    DBAccess::rederigir("listarProducto.php");
 }
 
 $unidades_medidas = new UnidadMedida();
@@ -99,7 +99,7 @@ $resultado_unidades = $unidades_medidasDAO->listarUnidadMedida();
               </div>  -->        
 
             <button name="btnGuardar" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
-            <a href="./listarProveedor.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
+            <a href="./listarProducto.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
         </form>
         <br>                    
     </div>
