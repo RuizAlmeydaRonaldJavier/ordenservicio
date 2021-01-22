@@ -4,7 +4,7 @@
 		private $id_proveedor;
 		private $razon_social;
 		private $ruc;
-		private $dirección;
+		private $direccion;
 		private $correo_electronico;
 		private $telefono;
 		private $fecha_registro;

@@ -20,7 +20,7 @@
 
 			$tempRazonsocial 	= $proveedor->__GET('razon_social');
 			$tempProveedor 		= $proveedor->__GET('ruc');
-			$tempDireccion 		= $proveedor->__GET('dirección');
+			$tempDireccion 		= $proveedor->__GET('direccion');
 			$tempCorreo 		= $proveedor->__GET('correo_electronico');
 			$tempTelefono 		= $proveedor->__GET('telefono');
 
@@ -52,7 +52,7 @@
 					$proveedor->__SET('id_proveedor', $r->id_proveedor);
 					$proveedor->__SET('razon_social', $r->razon_social);
 					$proveedor->__SET('ruc', $r->ruc);
-					$proveedor->__SET('dirección', $r->dirección);
+					$proveedor->__SET('direccion', $r->direccion);
 					$proveedor->__SET('correo_electronico', $r->correo_electronico);
 					$proveedor->__SET('telefono', $r->telefono);
 					$proveedor->__SET('fecha_registro', $r->fecha_registro);
@@ -88,7 +88,7 @@
 				$ruc->__SET('id_proveedor',  $r->id_proveedor);
 				$ruc->__SET('razon_social',  $r->razon_social);
 				$ruc->__SET('ruc',           $r->ruc);
-				$ruc->__SET('dirección',     $r->dirección);
+				$ruc->__SET('direccion',     $r->direccion);
 
 				$result[] = $ruc;
 			}

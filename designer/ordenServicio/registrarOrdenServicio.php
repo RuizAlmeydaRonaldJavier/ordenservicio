@@ -58,9 +58,9 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           <div class="row campo-altura">
             <div class="col-5">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
+                <label class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
                 <div class="col-sm-5 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+                  <input type="text" class="form-control form-control-sm" id="inp_codigo" name="inp_codigo" required="">
                 </div>
               </div>
             </div>
@@ -68,9 +68,9 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             </div>
             <div class="col-3">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label col-form-label-sm text-right">Fecha:</label>
+                <label class="col-sm-5 col-form-label col-form-label-sm text-right">Fecha:</label>
                 <div class="col-sm-7 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="NOMBRE" name="inp_nombre" onkeyup="mayus(this);" required>
+                  <input type="text" class="form-control form-control-sm" id="inp_fecha" name="inp_fecha" required="">
                 </div>
               </div>
             </div>
@@ -78,14 +78,11 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           <div class="row campo-altura">
             <div class="col-5">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Ruc:</label>
-
+                <label class="col-sm-3 col-form-label col-form-label-sm">Ruc:</label>
                 <div class="col-sm-7 pl-0">
                   <div class="input-group">
-                  <input id="inpAgrProve" type="text" class="form-control form-control-sm" maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
-
-                  <input name="inpIdPersonaAgrUsu" id="inpIdPersonaAgrUsu" type="hidden">
-
+                  <input type="text" class="form-control form-control-sm" id="inp_ruc" name="inp_ruc"  maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
+                  <input name="id_proveedor" id="id_proveedor" type="hidden">
                   <div class="input-group-append">
                     <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc">Buscar</button>
                   </div>
@@ -113,9 +110,9 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           <div class="row campo-altura">
             <div class="col-5">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm pr-0">Razón Social:</label>
+                <label class="col-sm-3 col-form-label col-form-label-sm pr-0">Razón Social:</label>
                 <div class="col-sm-9 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inprazon_social">
+                  <input type="text" class="form-control form-control-sm" id="inp_razon_social" name="inp_razon_social">
                 </div>
               </div>
             </div>
@@ -123,9 +120,9 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             </div>
             <div class="col-3">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label col-form-label-sm pr-0"></label>
+                <label class="col-sm-5 col-form-label col-form-label-sm pr-0"></label>
                 <div class="col-sm-7 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inprazon_social">
+                  <input type="text" class="form-control form-control-sm" id="inp_porcentaje">
                 </div>
               </div>
             </div>
@@ -133,9 +130,9 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           <div class="row campo-altura">
             <div class="col-5">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Dirección:</label>
+                <label class="col-sm-3 col-form-label col-form-label-sm">Dirección:</label>
                 <div class="col-sm-9 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inpdireccion">
+                  <input type="text" class="form-control form-control-sm" id="inp_direccion" name="inp_direccion">
                 </div>
               </div>
             </div>
@@ -147,7 +144,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           <div class="row campo-altura">
             <div class="col-12">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm te">Requerimiento de ref.:</label>
+                <label class="col-sm-2 col-form-label col-form-label-sm te">Requerimiento de ref.:</label>
                 <div class="col-sm-10 pl-0">
                   <input type="text" class="form-control form-control-sm" id="inputPassword">
                 </div>

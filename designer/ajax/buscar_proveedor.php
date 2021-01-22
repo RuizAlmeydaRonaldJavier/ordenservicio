@@ -6,7 +6,7 @@ require_once '../../DAL/DBAccess.php';
 require_once '../../BOL/proveedor.php';
 require_once '../../DAO/proveedorDAO.php';
 
-if(isset($_POST['ruc_prove'])){
+if(isset($_POST['ruc_proveedor'])){
 	//acceso a la archivo bd
 	$dba = new DBAccess();
 
@@ -14,7 +14,7 @@ if(isset($_POST['ruc_prove'])){
 	$proveedor = new Proveedor();
 	$proveedorDAO = new ProveedorDAO();
 
-	$proveedor->__SET('ruc', $_POST['ruc_prove']);
+	$proveedor->__SET('ruc', $_POST['ruc_proveedor']);
 	$resultado_proveedor = $proveedorDAO->Buscar_proveedor_ajax($proveedor);
 
 
@@ -23,7 +23,7 @@ if(isset($_POST['ruc_prove'])){
 	    $jsondata["data"] = array(
 	      'razon_social'    => $resultado_proveedor[0]->razon_social,
 	      'ruc'     		=> $resultado_proveedor[0]->ruc,
-	      'dirección'     	=> $resultado_proveedor[0]->dirección,
+	      'direccion'     	=> $resultado_proveedor[0]->direccion,
 	      'id_proveedor'    => $resultado_proveedor[0]->id_proveedor
 	    );
 	}else{

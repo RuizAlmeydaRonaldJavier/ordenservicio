@@ -13,6 +13,7 @@
   $proveedorDAO = new ProveedorDAO();
   $resultadoProveedor = $proveedorDAO->listarProveedor();
 
+
   /*if(isset($_POST['btnListar']))
   {
 	$proveedor->__SET('ruc', $_POST['ruc']);
@@ -56,7 +57,7 @@
                 <?php echo $resultado->__GET('ruc'); ?>
               </td>
               <td class="centrar-contenido">
-                <?php echo $resultado->__GET('dirección'); ?>
+                <?php echo $resultado->__GET('direccion'); ?>
               </td>
               <td class="centrar-contenido">
                 <a href="editar_persona.php?id=<?php echo $resultado->__GET('id_proveedor');?>" role="button" style='font-size: 13px; font: sans-serif;'><i class="fa fa-edit text-warning"></i></a>

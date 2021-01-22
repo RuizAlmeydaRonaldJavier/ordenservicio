@@ -45,7 +45,7 @@ CREATE TABLE proveedores
   id_proveedor          INT(11) NOT NULL AUTO_INCREMENT,
   razon_social          VARCHAR(60) NOT NULL,
   ruc                   VARCHAR(11) NOT NULL,
-  dirección             VARCHAR(80) NOT NULL,
+  direccion             VARCHAR(80) NOT NULL,
   correo_electronico    VARCHAR(60) NOT NULL,
   telefono              VARCHAR(9) NOT NULL,
   fecha_registro        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

@@ -21,7 +21,7 @@
 function buscarRucProveedor() {
 
             var parametros = {
-                "ruc_prove": $('#inpAgrProve').val()
+                "ruc_proveedor": $('#inp_ruc').val()
             };
 
             $.ajax({
@@ -34,20 +34,24 @@ function buscarRucProveedor() {
                 success: function(data) {
 
                     if (data.success === 1) {
-                        $('#inpAgrProve').css({'border':'1px solid green'});
+                        //alert("Proveedor encontrado.");
+                        $('#inp_ruc').css({'border':'1px solid green'});
 
-                        $('#inprazon_social').val("" + data.data.razon_social);
-                        $('#inpruc').val(""+data.data.ruc);
-                        $('#inpdireccion').val("" + data.data.dirección);
-
-                        $('#inpIdProveedorAgrMan').val("" + data.data.id_proveedor); 
+                        $('#inp_razon_social').val("" + data.data.razon_social);
+                        $('#inp_ruc').val(""+data.data.ruc);
+                        $('#inp_direccion').val("" + data.data.direccion);
+                        $('#inp_codigo').val("" + data.data.id_proveedor);
+                        $('#id_proveedor').val("" + data.data.id_proveedor); 
 
                     } else {
-                        $('#inpAgrProve').css({'border':'1px solid red'});
-                        alert("Proveedor no encontrado");
-                        $('#pr_razon_social').val("");
-                        $('#pr_ruc').val("");
-                        $('#pr_dirección').val("");
+                        $('#inp_ruc').css({'border':'1px solid red'});
+
+                        $('#inp_razon_social').val("");
+                        $('#inp_ruc').val("");
+                        $('#inp_direccion').val("");
+                        $('#inp_codigo').val("");
+                        $('#id_proveedor').val("");
+                        alert("Proveedor no encontrado.");
                         
                     }
 
@@ -59,11 +63,11 @@ function buscarRucProveedor() {
         }
 
         $('#btnBuscarRuc').click(function(e){
-            var value = $("#inpAgrProve").val().length;
+            var value = $("#inp_ruc").val().length;
             if (value>0) {
                 buscarRucProveedor();
             }else{
-                alert("Ingrese numero de Ruc");
+                alert("Ingrese número de Ruc");
             }
         });
 
