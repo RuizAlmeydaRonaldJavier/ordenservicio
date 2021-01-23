@@ -23,8 +23,8 @@
 		public function __construct()
 		{
 			$this->id_proveedor = new Proveedor();
-			/*$this->id_meta = new Meta();
-			$this->id_tipoFactura = new TipoFactura();*/
+			$this->id_meta = new Meta();
+			$this->id_tipoFactura = new TipoFactura();
 		}
 
 		public function __GET($x)

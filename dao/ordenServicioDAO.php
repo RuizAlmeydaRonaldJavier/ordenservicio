@@ -34,13 +34,59 @@
 					$ordenServicio->__SET('importe_neto02', $r->importe_neto02);
 					$ordenServicio->__SET('observacion', $r->observacion);
 					$ordenServicio->__SET('fecha_registro', $r->fecha_registro);
-					$ordenServicio->__SET('estado', $r->estado);
+					$ordenServicio->__SET('estado', $r->estado_orden);
 					$ordenServicio->__GET('id_proveedor')->__SET('razon_social', $r->razon_social);
-					$ordenServicio->__SET('id_meta', $r->id_meta);
-					$ordenServicio->__SET('id_tipoFactura', $r->id_tipoFactura);
+					$ordenServicio->__GET('id_meta')->__SET('id_meta', $r->id_meta);
+					$ordenServicio->__GET('id_tipoFactura')->__SET('id_tipoFactura', $r->id_tipoFactura);
 					
 					$result[] = $ordenServicio;
 				}
+				return $result;
+			}
+			catch(Exception $e)
+			{
+				die($e->getMessage());
+			}
+		}
+
+		// Registrar ordenes de servicios
+		public function registrarOrdenServicio(OrdenServicio $ordenServicio)
+		{
+			try
+			{
+				$result = array();
+				$statement = $this->pdo->prepare("CALL UP_REGISTRAR_ORDEN_SERVICIO(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+				$tempRequerimiento_referencia = 	$ordenServicio->__GET('requerimiento_referencia');
+				$tempInforme_referencia = 			$ordenServicio->__GET('informe_referencia');
+				$tempDescripcion = 					$ordenServicio->__GET('descripcion');
+				$tempImporte = 						$ordenServicio->__GET('importe');
+				$tempSub_total = 	$ordenServicio->__GET('sub_total');
+				$tempIgv =		$ordenServicio->__GET('igv');
+				$tempImporte_neto01 = 	$ordenServicio->__GET('importe_neto01');
+				$tempRetencion = 	$ordenServicio->__GET('retencion');
+				$tempImporte_neto02 =	$ordenServicio->__GET('importe_neto02');
+				$tempObservacion =	$ordenServicio->__GET('observacion');
+				$tempId_proveedor = 	$ordenServicio->__GET('id_proveedor')->__GET('id_proveedor');
+				$tempId_meta =	$ordenServicio->__GET('id_meta')->__GET('id_meta');
+				$tempId_tipoFactura = $ordenServicio->__GET('id_tipoFactura')->__GET('id_tipoFactura');
+				$tempId_tipoFactura = substr($tempId_tipoFactura, 0, 1);
+
+				$statement->bindParam(1, $tempRequerimiento_referencia);
+				$statement->bindParam(2, $tempInforme_referencia);
+				$statement->bindParam(3, $tempDescripcion);
+				$statement->bindParam(4, $tempImporte);
+				$statement->bindParam(5, $tempSub_total);
+				$statement->bindParam(6, $tempIgv);
+				$statement->bindParam(7, $tempImporte_neto01);
+				$statement->bindParam(8, $tempRetencion);
+				$statement->bindParam(9, $tempImporte_neto02);
+				$statement->bindParam(10, $tempObservacion);
+				$statement->bindParam(11, $tempId_proveedor);
+				$statement->bindParam(12, $tempId_meta);
+				$statement->bindParam(13, $tempId_tipoFactura);
+
+				$statement->execute();
 				return $result;
 			}
 			catch(Exception $e)

@@ -14,33 +14,50 @@ require_once '../../DAO/proveedorDAO.php';
 require_once '../../BOL/tipoFactura.php';
 require_once '../../DAO/tipoFacturaDAO.php';
 
+require_once '../../BOL/meta.php';
+require_once '../../DAO/metaDAO.php';
+
+require_once '../../BOL/ordenServicio.php';
+require_once '../../DAO/ordenServicioDAO.php';
+
 //importando header
 require '../layout/header.php';
 
 $proveedor = new Proveedor();
 $proveedorDAO = new ProveedorDAO();
 
-$mensajeFinalS = file_get_contents('../utilidades/mensaje_general.php');
+$tipos_facturas = new TipoFactura();
+$tipos_facturasDAO = new TipoFacturaDAO();
+
+$ordenServicio = new OrdenServicio();
+$ordenServicioDAO = new OrdenServicioDAO();
+
+$mensajeFinalS = file_get_contents('../msj/mensaje_general.php');
 
 if(isset($_POST['btnGuardar']))
 {
 
-	/*$proveedor->__SET('documento',            $_POST['inp_documento']);
-	$proveedor->__SET('nombre',               $_POST['inp_nombre']);
-	$proveedor->__SET('apellido_paterno',     $_POST['inp_apellido_paterno']);
-	$proveedor->__SET('apellido_materno',     $_POST['inp_apellido_materno']);
-    $proveedor->__SET('fecha_nacimiento',     $_POST['date_fecha_nacimiento']);
-    $proveedor->__SET('correo',               $_POST['inp_correo']);
-    $proveedor->__SET('sexo',                 $_POST['inp_sexo']);
+	$ordenServicio->__SET('requerimiento_referencia',  $_POST['inp_requerimientoReferencia']);
+  $ordenServicio->__SET('informe_referencia',  $_POST['inp_informeReferencia']);
+  $ordenServicio->__SET('descripcion',  $_POST['inp_descripcion']);
+  $ordenServicio->__SET('importe',  $_POST['inp_importe']);
+  $ordenServicio->__SET('sub_total',  $_POST['inp_subTotal']);
+  $ordenServicio->__SET('igv',  $_POST['inp_igv']);
+  $ordenServicio->__SET('importe_neto01',  $_POST['inp_importeNeto01']);
+  $ordenServicio->__SET('retencion',  $_POST['inp_retencion']);
+  $ordenServicio->__SET('importe_neto02',  $_POST['inp_importeNeto02']);
+  $ordenServicio->__SET('observacion',  $_POST['inp_observacion']);
+  $ordenServicio->__GET('id_proveedor')->__SET('id_proveedor',  $_POST['id_proveedor']);
+  $ordenServicio->__GET('id_meta')->__SET('id_meta',  $_POST['id_meta']);
+  $ordenServicio->__GET('id_tipoFactura')->__SET('id_tipoFactura',  $_POST['id_tipoFactura']);
 
-    $proveedorDAO->Registrar_per($proveedor);
+  $ordenServicioDAO->registrarOrdenServicio($ordenServicio);
 
-    echo $mensajeFinalS;
-    DBAccess::rederigir("agregar_persona.php");*/
+  echo $mensajeFinalS;
+  DBAccess::rederigir("listarOrdenServicio.php");
 }
 
-$tipos_facturas = new TipoFactura();
-$tipos_facturasDAO = new TipoFacturaDAO();
+
 
 $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
 
@@ -79,7 +96,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
                 <label class="col-sm-2 col-form-label col-form-label-sm">Ruc:</label>
                 <div class="col-sm-3 pl-0">
                   <div class="input-group">
-                  <input type="text" class="form-control form-control-sm" id="inp_ruc" name="inp_ruc"  maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
+                  <input type="text" class="form-control form-control-sm" id="inp_ruc" name="inp_ruc"  maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required="">
                   <input name="id_proveedor" id="id_proveedor" type="hidden">
                   <div class="input-group-append">
                     <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc"><i class="fas fa-search"></i></button>
@@ -134,7 +151,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label col-form-label-sm te">Requerimiento:</label>
                 <div class="col-sm-10 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+                  <input type="text" class="form-control form-control-sm" id="inp_requerimientoReferencia" name="inp_requerimientoReferencia" required="">
                 </div>
               </div>
             </div>
@@ -142,9 +159,9 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           <div class="row campo-altura">
             <div class="col-12">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm">Informe de ref.:</label>
+                <label class="col-sm-2 col-form-label col-form-label-sm">Informe de ref.:</label>
                 <div class="col-sm-10 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+                  <input type="text" class="form-control form-control-sm" id="inp_informeReferencia" name="inp_informeReferencia" required="">
                 </div>
               </div>
             </div>
@@ -152,9 +169,9 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           <div class="row campo-altura">
           <div class="col-12">
             <div class="form-group row">
-              <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm">Observación:</label>
+              <label class="col-sm-2 col-form-label col-form-label-sm">Observación:</label>
               <div class="col-sm-10 pl-0">
-                <input type="text" class="form-control form-control-sm" id="inputPassword">
+                <input type="text" class="form-control form-control-sm" id="inp_observacion" name="inp_observacion">
               </div>
             </div>
           </div>
@@ -164,8 +181,8 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
         <div class="row">
           <div class="col-12">
             <div class="form-group">
-              <label class="col-form-label-sm" for="exampleFormControlTextarea1">Descripción del servicio:</label>
-              <textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="7"></textarea>
+              <label class="col-form-label-sm">Descripción del servicio:</label>
+              <textarea class="form-control form-control-sm" id="inp_descripcion" name="inp_descripcion" rows="7" required=""></textarea>
             </div>
           </div>
         </div>
@@ -176,7 +193,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
               <label class="col-sm-2 col-form-label col-form-label-sm">Meta:</label>
               <div class="col-sm-2 pl-0">
                 <div class="input-group">
-                  <input type="text" class="form-control form-control-sm" id="inp_c1" name="inp_c1" maxlength="4" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
+                  <input type="text" class="form-control form-control-sm" id="inp_c1" name="inp_c1" maxlength="4" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required="">
                   <input name="id_meta" id="id_meta" type="hidden">
                   <div class="input-group-append">
                     <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarMeta" id="btnBuscarMeta"><i class="fas fa-search"></i></button>
@@ -189,7 +206,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             <div class="form-group row">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">Importe:</label>
               <div class="col-sm-6 pl-0">
-                <input type="double" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_importe" name="inp_importe">
+                <input type="double" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_importe" name="inp_importe" required="">
               </div>
             </div>
           </div>
@@ -199,7 +216,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             <div class="form-group row">
               <label class="col-sm-2 col-form-label col-form-label-sm">Función:</label>
               <div class="col-sm-2 pl-0">
-                <input type="text" class="form-control form-control-sm" maxlength="4" id="inp_c2" name="inp_c2" required="" disabled="">
+                <input type="text" class="form-control form-control-sm" maxlength="4" id="inp_c2" name="inp_c2" required="" readonly="">
               </div>
             </div>
           </div>
@@ -207,13 +224,13 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             <div class="form-group row" style="display: none;" id="div_subTotal">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">Sub Total:</label>
               <div class="col-sm-6 pl-0">
-                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_subTotal" name="inp_subTotal" disabled="">
+                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_subTotal" name="inp_subTotal" readonly="">
               </div>
             </div>
             <div class="form-group row" id="div_retencion">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">Retención:</label>
               <div class="col-sm-6 pl-0">
-                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_retencion" name="inp_retencion" disabled="">
+                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_retencion" name="inp_retencion" readonly="">
               </div>
             </div>
           </div>
@@ -231,13 +248,13 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             <div class="form-group row" style="display: none;" id="div_igv">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">I.G.V:</label>
               <div class="col-sm-6 pl-0">
-                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_igv" name="inp_igv" disabled="">
+                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_igv" name="inp_igv" readonly="">
               </div>
             </div>
             <div class="form-group row" id="div_importeNeto02">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">Importe neto:</label>
               <div class="col-sm-6 pl-0">
-                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right; font-weight: bold;" id="inp_importeNeto02" name="inp_importeNeto02" disabled="">
+                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right; font-weight: bold;" id="inp_importeNeto02" name="inp_importeNeto02" readonly="">
               </div>
             </div>
           </div>
@@ -255,14 +272,14 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             <div class="form-group row" style="display: none;" id="div_importeNeto01">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">Importe neto:</label>
               <div class="col-sm-6 pl-0">
-                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right; font-weight: bold;" id="inp_importeNeto01" name="inp_importeNeto01" disabled="">
+                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right; font-weight: bold;" id="inp_importeNeto01" name="inp_importeNeto01" readonly="">
               </div>
             </div>
           </div>
         </div>
       </div>
         <button name="btnGuardar" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
-        <a href="./lista_atencion.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
+        <a href="./listarOrdenServicio.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
       </form>
       <br>
     </div>

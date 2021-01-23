@@ -333,8 +333,7 @@ DELIMITER $$
 CREATE PROCEDURE up_listar_orden_servicio
 (
 ) BEGIN
-  SELECT * FROM ordenes_servicios ord INNER JOIN proveedores pro ON ord.id_proveedor = pro.id_proveedor 
-  WHERE ord.estado = '1'; 
+  SELECT *, ord.estado as 'estado_orden' FROM ordenes_servicios ord INNER JOIN proveedores pro ON ord.id_proveedor = pro.id_proveedor ORDER BY id_ordenServicio DESC;
 END $$
 
 -- Procedimiento para listar las ordenes de compras

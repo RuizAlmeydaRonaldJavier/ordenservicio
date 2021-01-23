@@ -5,6 +5,8 @@
   
   //importando las clases y los dao
   require_once '../../BOL/proveedor.php';
+  require_once '../../BOL/meta.php';
+  require_once '../../BOL/tipoFactura.php';
   require_once '../../BOL/ordenServicio.php';
   require_once '../../DAO/ordenServicioDAO.php';
 
@@ -31,11 +33,10 @@
               <th>Código</th>
               <th>Proveedor</th>
               <th>Fecha</th>
-              <th>Importe Fact.</th>
-              <th>Importe R.H.</th>
+              <th>Importe total</th>
               <th>Estado</th>
               <th>Editar</th>
-              <th>Eliminar</th>
+              <th>Anular</th>
             </tr>
           </thead>
           <tbody>
@@ -48,20 +49,14 @@
               <td class="centrar-contenido">
                 <?php echo $resultado->__GET('id_proveedor')->__GET('razon_social'); ?>
               </td>
-              <!--<td class="centrar-contenido">
-                <?php echo $resultado->__GET('fecha'); ?>
-              </td>-->
               <td class="centrar-contenido">
                 <?php echo date('d-m-Y', strtotime($resultado->__GET('fecha'))); ?>
               </td>
               <td class="centrar-contenido">
-                <?php echo $resultado->__GET('importe_neto01'); ?>
+                <?php echo ($resultado->__GET('id_tipoFactura')->__GET('id_tipoFactura') === '1'|| $resultado->__GET('id_tipoFactura')->__GET('id_tipoFactura') === '2') ? $resultado->__GET('importe_neto02') : $resultado->__GET('importe_neto01'); ?>
               </td>
               <td class="centrar-contenido">
-                <?php echo $resultado->__GET('importe_neto02'); ?>
-              </td>
-              <td class="centrar-contenido">
-                Emitido
+                <?php echo ($resultado->__GET('estado') == '1') ? '<span class="bg-success text-white btn-sm">Emitido</span>' : '<span class="bg-secondary text-white btn-sm">Anulado</span>'; ?>
               </td>
               <td class="centrar-contenido">
                 <a href="editar_persona.php?id=<?php echo $resultado->__GET('id_ordenServicio');?>" role="button" style='font-size: 13px; font: sans-serif;'><i class="fa fa-edit text-warning"></i></a>
