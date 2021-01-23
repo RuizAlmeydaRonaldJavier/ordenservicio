@@ -68,7 +68,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
               <div class="form-group row">
                 <label class="col-sm-6 col-form-label col-form-label-sm text-right">Fecha:</label>
                 <div class="col-sm-6 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inp_fecha" name="inp_fecha" required="" disabled="">
+                  <input type="text" class="form-control form-control-sm" style="text-align:right;" id="inp_fecha" name="inp_fecha" required="" disabled="">
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
               <div class="form-group row">
                 <label class="col-sm-6 col-form-label col-form-label-sm text-right">Tipo factura:</label>
                 <div class="col-sm-6 pl-0">
-                  <select class="form-control btn-sm" id="id_tipoFactura" name="id_tipoFactura" onchange="seleccionarFactura();">
+                  <select class="form-control btn-sm" style="text-align-last:right;" id="id_tipoFactura" name="id_tipoFactura" onchange="seleccionarFactura();">
                     <?php foreach($resultado_tipoFactura as $r_g): ?>
                           <option value="<?php echo $r_g->__GET('id_tipoFactura').$r_g->__GET('porcentaje');?>">
                               <?php echo $r_g->__GET('descripcion');?>
@@ -260,30 +260,6 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             </div>
           </div>
         </div>
-        <!--<div class="row campo-altura">
-          <div class="col-8">
-          </div>
-          <div class="col-4">
-            <div class="form-group row">
-              <label class="col-sm-6 col-form-label col-form-label-sm text-right">Retención:</label>
-              <div class="col-sm-6 pl-0">
-                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_retencion" name="inp_retencion" disabled="">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row campo-altura">
-          <div class="col-8">
-          </div>
-          <div class="col-4">
-            <div class="form-group row">
-              <label class="col-sm-6 col-form-label col-form-label-sm text-right">Importe neto:</label>
-              <div class="col-sm-6 pl-0">
-                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_importeNeto02" name="inp_importeNeto02" disabled="">
-              </div>
-            </div>
-          </div>
-        </div>-->
       </div>
         <button name="btnGuardar" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
         <a href="./lista_atencion.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>

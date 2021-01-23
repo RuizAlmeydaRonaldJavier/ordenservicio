@@ -63,13 +63,17 @@ CREATE TABLE ordenes_servicios
   informe_referencia            VARCHAR(80) NOT NULL,
   descripcion                 VARCHAR(200) NOT NULL,
   importe                   VARCHAR(20) NOT NULL,
+  sub_total                   VARCHAR(20) NOT NULL,
+  igv                   VARCHAR(20) NOT NULL,
+  importe_neto01                   VARCHAR(20) NOT NULL,
   retencion             VARCHAR(20) NOT NULL,
-  importe_neto            VARCHAR(20) NOT NULL,
+  importe_neto02            VARCHAR(20) NOT NULL,
   observacion                 VARCHAR(100) NOT NULL,
   fecha_registro        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   estado                    VARCHAR(1) NOT NULL DEFAULT '1',
   id_proveedor              INT(11) NOT NULL,
   id_meta                   INT(11) NOT NULL,
+  id_tipoFactura                   INT(11) NOT NULL,
   PRIMARY KEY (id_ordenServicio)
 );
 
@@ -151,6 +155,17 @@ CREATE TABLE metas
 );
 
 
+CREATE TABLE tipos_facturas
+(
+  id_tipoFactura             INT(11) NOT NULL AUTO_INCREMENT,
+  descripcion           VARCHAR(20) NOT NULL,
+  porcentaje              INT(11) NOT NULL,
+  fecha_registro            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  estado                    VARCHAR(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (id_tipoFactura)
+);
+
+
 -- ******** RELACIONES
 -- Relacion de la tabla usuarios con pefiles
 ALTER TABLE usuarios ADD CONSTRAINT fk_usuario_perfil FOREIGN KEY (id_perfil) REFERENCES 
@@ -168,9 +183,17 @@ REFERENCES proveedores (id_proveedor);
 ALTER TABLE ordenes_servicios ADD CONSTRAINT fk_ordenServicio_meta FOREIGN KEY (id_meta) 
 REFERENCES metas (id_meta);
 
+-- Relacion de la tabla ordenes de servicios con tipos facturas
+ALTER TABLE ordenes_servicios ADD CONSTRAINT fk_ordenServicio_tipoFactura FOREIGN KEY (id_tipoFactura) 
+REFERENCES tipos_facturas (id_tipoFactura);
+
 -- Relacion de la tabla ordenes de compras con proveedores
 ALTER TABLE ordenes_compras ADD CONSTRAINT fk_ordenCompra_proveedor FOREIGN KEY (id_proveedor) 
 REFERENCES proveedores (id_proveedor);
+
+-- Relacion de la tabla ordenes de compras con metas
+ALTER TABLE ordenes_compras ADD CONSTRAINT fk_ordenCompra_meta FOREIGN KEY (id_meta) 
+REFERENCES metas (id_meta);
 
 -- Relacion de la tabla detalle de ordenes de compras con ordenes de compras
 ALTER TABLE ordenesCompras_detalle ADD CONSTRAINT fk_ordenCompraDetalle_ordenCompra FOREIGN KEY (id_ordenCompra) 
@@ -194,7 +217,7 @@ INSERT INTO usuarios (usuario, contrasenia, id_perfil) VALUES ('ADMINISTRADOR', 
 ('ALMACEN', '123', '3');
 
 -- Insertar proveedores
-INSERT INTO proveedores (razon_social, ruc, dirección, correo_electronico, telefono) VALUES 
+INSERT INTO proveedores (razon_social, ruc, direccion, correo_electronico, telefono) VALUES 
 ('RUIZ ALMEYDA RONALD JAVIER', '1212121212', 'JIRON NICOLAS DE PIEROLA # 174', 'ronaldj.ruiz@upsjb.edu.pe', '121212121'), 
 ('GUTIERREZ GONZALES JORGE', '6767676767', 'SAN MARTIN 2DA CUADRA', 'ruizalmeyda@upsjb.edu.pe', '676767676');
 
@@ -212,14 +235,17 @@ INSERT INTO metas (c1, c2, c3, c4, c5, c6, c7, c8, c9, c10) VALUES ('0001', '001
 'PATRULLAJE MUNICIPAL POR SECTOR - SERENAZGO');
 
 -- Insertar ordenes de servicios
-INSERT INTO ordenes_servicios (numero_ordenServicio, requerimiento_referencia, informe_referencia, 
+/*INSERT INTO ordenes_servicios (numero_ordenServicio, requerimiento_referencia, informe_referencia, 
 descripcion, importe, retencion, importe_neto, observacion, id_proveedor, id_meta) VALUES 
 ('2020000001', 'REQ. N 201-MPCH/GSP', 'INF. N 100-MPCH/GSP', 'SERVICIO A LA MUNICIPALIDAD PROVINCIAL DE CHINCHA 
   COMO APOYO EN LE GERENCIA DE SECRETARIA GENERAL CORRESPONDIENTE AL MES DE FEBRERO','1,500.00', '0.00', '1,500.00', 
   'CONFORMIDAD DE SERVICIO', '1', '1'), 
 ('2020000002', 'REQ. N 159-MPCH/ALC', 'INF. N 200-MPCH/ALC', 'SERVICIO A LA MUNICIPALIDAD PROVINCIAL DE CHINCHA 
   COMO APOYO EN EL DESPACHO DE ALCALDIA CORRESPONDIENTE AL MES DE MARZO','1,500.00', '0.00', '1,500.00', 
-  'CONFORMIDAD DE SERVICIO', '2', '2');
+  'CONFORMIDAD DE SERVICIO', '2', '2');*/
+
+  INSERT INTO tipos_facturas (descripcion, porcentaje) VALUES ('Sin retencion', '0'), ('Con retencion', '8'), 
+  ('IGV disgregado', '18'), ('IGV incluido', '18'), ('Sin IGV', '0'); 
 
 
 -- ******** PROCEDIMIENTOS ALMACENADOS
@@ -324,12 +350,12 @@ CREATE PROCEDURE up_registrar_proveedor
 (
   IN _razon_social          VARCHAR(60),
   IN _ruc                   VARCHAR(11),
-  IN _dirección             VARCHAR(80),
+  IN _direccion             VARCHAR(80),
   IN _correo_electronico    VARCHAR(60),
   IN _telefono              VARCHAR(9)
 ) BEGIN
-  INSERT INTO proveedores (razon_social, ruc, dirección, correo_electronico, telefono) VALUES 
-  (_razon_social, _ruc, _dirección, _correo_electronico, _telefono);
+  INSERT INTO proveedores (razon_social, ruc, direccion, correo_electronico, telefono) VALUES 
+  (_razon_social, _ruc, _direccion, _correo_electronico, _telefono);
 END $$
 
 -- Procedimiento para registrar los productos
@@ -389,16 +415,7 @@ BEGIN
 
 END $$
 
-...............
-CREATE TABLE tipos_facturas
-(
-  id_tipoFactura             INT(11) NOT NULL AUTO_INCREMENT,
-  descripcion           VARCHAR(20) NOT NULL,
-  porcentaje              INT(11) NOT NULL,
-  fecha_registro            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  estado                    VARCHAR(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (id_tipoFactura)
-);
+
 
 DELIMITER $
 CREATE PROCEDURE up_listar_tipo_factura(
@@ -410,7 +427,7 @@ INSERT INTO tipos_facturas (id_tipoFactura, descripcion, porcentaje) VALUES (nul
 (null, 'Con retención', '8'), (null, 'IGV disgregado', '18'), (null, 'IGV incluido', '18'), (null, 'Sin IGV', '0');
 
 
------
+------------
 DELIMITER $$
 CREATE PROCEDURE up_buscar_meta_ajax(
     IN IN_c1 VARCHAR(4)
@@ -425,4 +442,56 @@ BEGIN
           signal sqlstate '45000' set message_text = 'Ingrese los datos de manera correcta!!!';
     END IF;
 
+END $$
+
+-- Procedimiento para registrar los orden de servicio
+DELIMITER $$
+CREATE PROCEDURE up_registrar_orden_servicio
+(
+  IN _requerimiento_referencia      VARCHAR(80),
+  IN _informe_referencia            VARCHAR(80),
+  IN _descripcion                 VARCHAR(200),
+  IN _importe                   VARCHAR(20),
+  IN _sub_total                   VARCHAR(20),
+  IN _igv                   VARCHAR(20),
+  IN _importe_neto01                   VARCHAR(20),
+  IN _retencion             VARCHAR(20),
+  IN _importe_neto02            VARCHAR(20),
+  IN _observacion                 VARCHAR(100),
+  IN _id_proveedor              INT(11),
+  IN _id_meta                   INT(11),
+  IN _id_tipoFactura                   INT(11)
+) BEGIN
+  DECLARE contador INT;
+  DECLARE _numero_ordenServicio VARCHAR(10);
+  DECLARE auxiliar INT;
+  DECLARE anio VARCHAR(4);
+
+  SET contador = (SELECT COUNT(*) FROM ordenes_servicios);
+
+  IF (contador > 0 ) THEN
+    SET auxiliar = (SELECT CAST(RIGHT(numero_ordenServicio, 4) AS INT) FROM ordenes_servicios ORDER BY id_ordenServicio DESC LIMIT 1);
+    SET auxiliar = auxiliar + 1;
+    SET anio = YEAR(NOW()); 
+
+    IF(auxiliar < 10) THEN
+      SET _numero_ordenServicio = CONCAT('OS', anio, '000', auxiliar);
+      ELSE IF(contador<100) THEN
+        SET _numero_ordenServicio = CONCAT('OS', anio, '00',auxiliar);
+        ELSE IF(contador<1000)THEN
+          SET _numero_ordenServicio = CONCAT('OS', anio, '0',auxiliar);
+          ELSE
+          SET _numero_ordenServicio = CONCAT('OS', anio, auxiliar);
+        END IF;
+      END IF;
+    END IF; 
+
+  ELSE
+    SET anio = YEAR(NOW()); 
+    SET _numero_ordenServicio = CONCAT('OS', anio, '0001');
+  END IF;
+
+  INSERT INTO ordenes_servicios VALUES (NULL, _numero_ordenServicio, now(), _requerimiento_referencia, _informe_referencia,
+  _descripcion, _importe, _sub_total, _igv, _importe_neto01, _retencion, _importe_neto02, _observacion, now(), '1', 
+  _id_proveedor, _id_meta, _id_tipoFactura);
 END $$

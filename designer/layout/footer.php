@@ -157,6 +157,30 @@
     {
       calcularImporte();
     }
+    else
+    {
+      var tipo_factura = document.getElementById("id_tipoFactura").value.charAt(0);
+      
+      switch (tipo_factura) {
+        case '1':
+          mostrarRetencion();
+          break;
+        case '2':
+          mostrarRetencion();
+          break;
+        case '3':
+          mostrarIgv();
+          break;
+        case '4':
+          mostrarIgv();
+          break;
+        case '5':
+          mostrarIgv();
+          break;
+        default:
+          break;
+      }
+    }
     /*var tipo_factura = document.getElementById("id_tipoFactura").value.substr(1,2);
     console.log('a', tipo_factura);*/
 
@@ -182,11 +206,7 @@
 
       switch (tipo_factura) {
         case '1':
-          var div_retencion = document.getElementById("div_retencion");
-          var div_importeNeto02 = document.getElementById("div_importeNeto02");
-          
-          div_retencion.style.display = "";
-          div_importeNeto02.style.display = "";
+          mostrarRetencion();
 
           $("#inp_retencion").val(parseInt(porcentaje).toFixed(2));
           $("#inp_importeNeto02").val(parseInt(importe).toFixed(2));
@@ -195,20 +215,9 @@
           $("#inp_igv").val("");
           $("#inp_importeNeto01").val("");
 
-          var div_subTotal = document.getElementById("div_subTotal");
-          var div_igv = document.getElementById("div_igv");
-          var div_importeNeto01 = document.getElementById("div_importeNeto01");
-          
-          div_subTotal.style.display = "none";
-          div_igv.style.display = "none";
-          div_importeNeto01.style.display = "none";
           break;
         case '2':
-          var div_retencion = document.getElementById("div_retencion");
-          var div_importeNeto02 = document.getElementById("div_importeNeto02");
-          
-          div_retencion.style.display = "";
-          div_importeNeto02.style.display = "";
+          mostrarRetencion();
 
           var retencion = importe * (porcentaje / 100);
           var importe_neto02 = importe - retencion;
@@ -220,22 +229,9 @@
           $("#inp_igv").val("");
           $("#inp_importeNeto01").val("");
 
-          var div_subTotal = document.getElementById("div_subTotal");
-          var div_igv = document.getElementById("div_igv");
-          var div_importeNeto01 = document.getElementById("div_importeNeto01");
-          
-          div_subTotal.style.display = "none";
-          div_igv.style.display = "none";
-          div_importeNeto01.style.display = "none";
           break;
         case '3':
-          var div_subTotal = document.getElementById("div_subTotal");
-          var div_igv = document.getElementById("div_igv");
-          var div_importeNeto01 = document.getElementById("div_importeNeto01");
-          
-          div_subTotal.style.display = "";
-          div_igv.style.display = "";
-          div_importeNeto01.style.display = "";
+          mostrarIgv();
 
           var igv = importe * (porcentaje / 100);
           var importe_neto01 = parseInt(importe) + parseInt(igv);
@@ -247,20 +243,9 @@
           $("#inp_retencion").val("");
           $("#inp_importeNeto02").val("");
 
-          var div_retencion = document.getElementById("div_retencion");
-          var div_importeNeto02 = document.getElementById("div_importeNeto02");
-          
-          div_retencion.style.display = "none";
-          div_importeNeto02.style.display = "none";
           break;
         case '4':
-          var div_subTotal = document.getElementById("div_subTotal");
-          var div_igv = document.getElementById("div_igv");
-          var div_importeNeto01 = document.getElementById("div_importeNeto01");
-          
-          div_subTotal.style.display = "";
-          div_igv.style.display = "";
-          div_importeNeto01.style.display = "";
+          mostrarIgv();
 
           var sub_total = importe / (1 + (porcentaje / 100));
           var igv = importe - sub_total;
@@ -272,20 +257,9 @@
           $("#inp_retencion").val("");
           $("#inp_importeNeto02").val("");
 
-          var div_retencion = document.getElementById("div_retencion");
-          var div_importeNeto02 = document.getElementById("div_importeNeto02");
-          
-          div_retencion.style.display = "none";
-          div_importeNeto02.style.display = "none";
           break;
         case '5':
-          var div_subTotal = document.getElementById("div_subTotal");
-          var div_igv = document.getElementById("div_igv");
-          var div_importeNeto01 = document.getElementById("div_importeNeto01");
-          
-          div_subTotal.style.display = "";
-          div_igv.style.display = "";
-          div_importeNeto01.style.display = "";
+          mostrarIgv();
 
           $("#inp_subTotal").val(parseInt(importe).toFixed(2));
           $("#inp_igv").val(parseInt(porcentaje).toFixed(2));
@@ -294,15 +268,44 @@
           $("#inp_retencion").val("");
           $("#inp_importeNeto02").val("");
 
-          var div_retencion = document.getElementById("div_retencion");
-          var div_importeNeto02 = document.getElementById("div_importeNeto02");
-          
-          div_retencion.style.display = "none";
-          div_importeNeto02.style.display = "none";
           break;
         default:
           break;
       }
+    }
+
+    function mostrarRetencion()
+    {
+      var div_retencion = document.getElementById("div_retencion");
+      var div_importeNeto02 = document.getElementById("div_importeNeto02");
+          
+      div_retencion.style.display = "";
+      div_importeNeto02.style.display = "";
+
+      var div_subTotal = document.getElementById("div_subTotal");
+      var div_igv = document.getElementById("div_igv");
+      var div_importeNeto01 = document.getElementById("div_importeNeto01");
+          
+      div_subTotal.style.display = "none";
+      div_igv.style.display = "none";
+      div_importeNeto01.style.display = "none";
+    }
+
+    function mostrarIgv()
+    {
+      var div_subTotal = document.getElementById("div_subTotal");
+      var div_igv = document.getElementById("div_igv");
+      var div_importeNeto01 = document.getElementById("div_importeNeto01");
+          
+      div_subTotal.style.display = "";
+      div_igv.style.display = "";
+      div_importeNeto01.style.display = "";
+
+      var div_retencion = document.getElementById("div_retencion");
+      var div_importeNeto02 = document.getElementById("div_importeNeto02");
+          
+      div_retencion.style.display = "none";
+      div_importeNeto02.style.display = "none";
     }
 </script>
 

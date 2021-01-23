@@ -31,7 +31,9 @@
               <th>Código</th>
               <th>Proveedor</th>
               <th>Fecha</th>
-              <th>Total</th>
+              <th>Importe Fact.</th>
+              <th>Importe R.H.</th>
+              <th>Estado</th>
               <th>Editar</th>
               <th>Eliminar</th>
             </tr>
@@ -53,7 +55,13 @@
                 <?php echo date('d-m-Y', strtotime($resultado->__GET('fecha'))); ?>
               </td>
               <td class="centrar-contenido">
-                <?php echo $resultado->__GET('importe_neto'); ?>
+                <?php echo $resultado->__GET('importe_neto01'); ?>
+              </td>
+              <td class="centrar-contenido">
+                <?php echo $resultado->__GET('importe_neto02'); ?>
+              </td>
+              <td class="centrar-contenido">
+                Emitido
               </td>
               <td class="centrar-contenido">
                 <a href="editar_persona.php?id=<?php echo $resultado->__GET('id_ordenServicio');?>" role="button" style='font-size: 13px; font: sans-serif;'><i class="fa fa-edit text-warning"></i></a>
