@@ -18,7 +18,22 @@
 
 <script type="text/javascript">
 
-  //Buscar Ruc
+  window.onload = function(){
+    if(document.getElementById("inp_fecha"))
+    {
+      var fecha = new Date(); //Fecha actual
+      var mes = fecha.getMonth()+1; //obteniendo mes
+      var dia = fecha.getDate(); //obteniendo dia
+      var ano = fecha.getFullYear(); //obteniendo año
+      if(dia<10)
+        dia='0'+dia; //agrega cero si el menor de 10
+      if(mes<10)
+        mes='0'+mes //agrega cero si el menor de 10
+      document.getElementById('inp_fecha').value=ano+"-"+mes+"-"+dia;
+    }
+  }
+
+   //Buscar Ruc
   $('#btnBuscarRuc').click(function(e)
   {
     var value = $("#inp_ruc").val().length;
@@ -96,8 +111,6 @@
       "meta_orden": $('#inp_c1').val()
     };
 
-    console.log('un_nombre', parametros);
-
     $.ajax({
       data: parametros,
       url: '../ajax/buscar_meta.php',
@@ -108,7 +121,6 @@
       },
       success: function(data)
       {
-        console.log('un_nombre', data);
         if (data.success === 1)
         {
           $('#inp_c1').css({'border':'1px solid green'});
@@ -136,6 +148,92 @@
       }
     });
   }
+
+  function seleccionarFactura()
+  {
+    /* Para obtener el valor */
+    var value = $("#inp_importe").val().length;
+    if (value > 0)
+    {
+      calcularImporte();
+    }
+    /*var tipo_factura = document.getElementById("id_tipoFactura").value.substr(1,2);
+    console.log('a', tipo_factura);*/
+
+    /* Para obtener el texto */
+    //var combo = document.getElementById("producto");
+    //var selected = combo.options[combo.selectedIndex].text;
+  }
+
+  $( "#inp_importe" ).blur(function()
+  {
+    calcularImporte();
+    //console.log('a', tipo_factura);
+      // tu codigo ajax va dentro de esta function...
+  });
+
+  function calcularImporte()
+    {
+      var tipo_factura = document.getElementById("id_tipoFactura").value.charAt(0);
+      var importe = $("#inp_importe").val();
+      var porcentaje = document.getElementById("id_tipoFactura").value.substr(1,2);
+
+      $("#inp_importe").val(parseInt(importe).toFixed(2));
+
+      switch (tipo_factura) {
+        case '1':
+          $("#inp_retencion").val(parseInt(porcentaje).toFixed(2));
+          $("#inp_importeNeto02").val(parseInt(importe).toFixed(2));
+
+          $("#inp_subTotal").val("");
+          $("#inp_igv").val("");
+          $("#inp_importeNeto01").val("");
+          break;
+        case '2':
+          var retencion = importe * (porcentaje / 100);
+          var importe_neto02 = importe - retencion;
+
+          $("#inp_retencion").val(retencion.toFixed(2));
+          $("#inp_importeNeto02").val(importe_neto02.toFixed(2));
+
+          $("#inp_subTotal").val("");
+          $("#inp_igv").val("");
+          $("#inp_importeNeto01").val("");
+          break;
+        case '3':
+          var igv = importe * (porcentaje / 100);
+          var importe_neto01 = parseInt(importe) + parseInt(igv);
+          
+          $("#inp_subTotal").val(parseInt(importe).toFixed(2));
+          $("#inp_igv").val(igv.toFixed(2));
+          $("#inp_importeNeto01").val(importe_neto01.toFixed(2));
+
+          $("#inp_retencion").val("");
+          $("#inp_importeNeto02").val("");
+          break;
+        case '4':
+          var sub_total = importe / (1 + (porcentaje / 100));
+          var igv = importe - sub_total;
+
+          $("#inp_subTotal").val(sub_total.toFixed(2));
+          $("#inp_igv").val(igv.toFixed(2));
+          $("#inp_importeNeto01").val(parseInt(importe).toFixed(2));
+
+          $("#inp_retencion").val("");
+          $("#inp_importeNeto02").val("");
+          break;
+        case '5':
+          $("#inp_subTotal").val(parseInt(importe).toFixed(2));
+          $("#inp_igv").val(parseInt(porcentaje).toFixed(2));
+          $("#inp_importeNeto01").val(parseInt(importe).toFixed(2));
+
+          $("#inp_retencion").val("");
+          $("#inp_importeNeto02").val("");
+          break;
+        default:
+          break;
+      }
+    }
 </script>
 
 <!--<script type="text/javascript">
