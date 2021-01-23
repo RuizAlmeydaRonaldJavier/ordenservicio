@@ -59,10 +59,10 @@
                 <?php echo ($resultado->__GET('estado') == '1') ? '<span class="bg-success text-white btn-sm">Emitido</span>' : '<span class="bg-secondary text-white btn-sm">Anulado</span>'; ?>
               </td>
               <td class="centrar-contenido">
-                <a href="./editarOrdenServicio.php?id_ordenServicio=<?php echo $resultado->__GET('id_ordenServicio');?>" role="button" style='font-size: 13px; font: sans-serif;'><i class="fa fa-edit text-warning"></i></a>
+                <a <?php echo ($resultado->__GET('estado') == '1') ? 'href="./editarOrdenServicio.php?id_ordenServicio='. $resultado->__GET('id_ordenServicio').'"' : ''; ?> role="button" style='font-size: 13px; font: sans-serif;'><i class="fa fa-edit text-warning"></i></a>
               </td>
               <td class="centrar-contenido">
-                <a href="?action=eliminar&id=<?php echo $resultado->__GET('id_ordenServicio');?>" role="button" style='font-size: 13px;'><i class="fa fa-trash text-danger"></i></a>
+                <a <?php echo ($resultado->__GET('estado') == '1') ? 'href="./eliminarOrdenServicio.php?id_ordenServicio='. $resultado->__GET('id_ordenServicio').'"' : ''; ?> role="button" style='font-size: 13px;'><i class="fa fa-trash text-danger"></i></a>
               </td>
             </tr>
             <?php endforeach;

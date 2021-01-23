@@ -38,9 +38,9 @@ $resultadoOrdenServicio = $ordenServicioDAO->buscarOrdenServicio($ordenServicio)
 
 $mensajeFinalS = file_get_contents('../msj/mensaje_general.php');
 
-if(isset($_POST['btnGuardar']))
+if(isset($_POST['btnModificar']))
 {
-
+  $ordenServicio->__SET('id_ordenServicio',  $_POST['id_ordenServicio']);
 	$ordenServicio->__SET('requerimiento_referencia',  $_POST['inp_requerimientoReferencia']);
   $ordenServicio->__SET('informe_referencia',  $_POST['inp_informeReferencia']);
   $ordenServicio->__SET('descripcion',  $_POST['inp_descripcion']);
@@ -55,7 +55,7 @@ if(isset($_POST['btnGuardar']))
   $ordenServicio->__GET('id_meta')->__SET('id_meta',  $_POST['id_meta']);
   $ordenServicio->__GET('id_tipoFactura')->__SET('id_tipoFactura',  $_POST['id_tipoFactura']);
 
-  $ordenServicioDAO->registrarOrdenServicio($ordenServicio);
+  $ordenServicioDAO->modificarOrdenServicio($ordenServicio);
 
   echo $mensajeFinalS;
   DBAccess::rederigir("listarOrdenServicio.php");
@@ -196,7 +196,7 @@ foreach($resultadoOrdenServicio as $resultado):
               <div class="col-sm-2 pl-0">
                 <div class="input-group">
                   <input type="text" class="form-control form-control-sm" id="inp_c1" name="inp_c1" maxlength="4" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required=""  value="<?php echo $resultado->__GET('id_meta')->__GET('c1'); ?>">
-                  <input name="id_meta" id="id_meta" type="hidden">
+                  <input name="id_meta" id="id_meta" value="<?php echo $resultado->__GET('id_meta')->__GET('id_meta'); ?>" type="hidden">
                   <div class="input-group-append">
                     <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarMeta" id="btnBuscarMeta"><i class="fas fa-search"></i></button>
                   </div>
@@ -280,7 +280,8 @@ foreach($resultadoOrdenServicio as $resultado):
           </div>
         </div>
       </div>
-        <button name="btnGuardar" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
+        <button name="btnModificar" class="btn btn-primary"><i class="fa fa-check"></i> Modificar</button>
+        <input name="id_ordenServicio" id="id_ordenServicio" value="<?php echo $resultado->__GET('id_ordenServicio'); ?>" type="hidden">
         <a href="./listarOrdenServicio.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
       </form>
       <br>

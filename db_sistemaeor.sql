@@ -503,3 +503,38 @@ CREATE PROCEDURE up_buscar_orden_servicio
 ) BEGIN
   SELECT *, ord.descripcion AS 'descripcion_servicio', tfa.descripcion AS 'descripcion_factura' FROM ordenes_servicios ord INNER JOIN proveedores pro ON ord.id_proveedor = pro.id_proveedor INNER JOIN metas met ON ord.id_meta = met.id_meta INNER JOIN tipos_facturas tfa ON ord.id_tipoFactura = tfa.id_tipoFactura WHERE ord.id_ordenServicio = _id_ordenServicio;
 END $$
+
+DELIMITER $$
+CREATE PROCEDURE up_modificar_orden_servicio
+(
+  IN _requerimiento_referencia      VARCHAR(80),
+  IN _informe_referencia            VARCHAR(80),
+  IN _descripcion                 VARCHAR(200),
+  IN _importe                   VARCHAR(20),
+  IN _sub_total                   VARCHAR(20),
+  IN _igv                   VARCHAR(20),
+  IN _importe_neto01                   VARCHAR(20),
+  IN _retencion             VARCHAR(20),
+  IN _importe_neto02            VARCHAR(20),
+  IN _observacion                 VARCHAR(100),
+  IN _id_proveedor              INT(11),
+  IN _id_meta                   INT(11),
+  IN _id_tipoFactura                   INT(11),
+  IN _id_ordenServicio                   INT(11)
+) BEGIN
+  UPDATE ordenes_servicios SET 
+  requerimiento_referencia = _requerimiento_referencia, 
+  informe_referencia = _informe_referencia,
+  descripcion = _descripcion,
+  importe = _importe,
+  sub_total = _sub_total,
+  igv = _igv,
+  importe_neto01 = _importe_neto01,
+  retencion = _retencion,
+  importe_neto02 = _importe_neto02,
+  observacion = _observacion,
+  id_proveedor = _id_proveedor,
+  id_meta = _id_meta,
+  id_tipoFactura = _id_tipoFactura WHERE id_ordenServicio = _id_ordenServicio;
+  
+END $$

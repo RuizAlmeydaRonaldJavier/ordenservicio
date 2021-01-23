@@ -148,5 +148,53 @@
 				die($e->getMessage());
 			}
 		}
+
+		// Registrar ordenes de servicios
+		public function modificarOrdenServicio(OrdenServicio $ordenServicio)
+		{
+			try
+			{
+				$result = array();
+				$statement = $this->pdo->prepare("CALL UP_MODIFICAR_ORDEN_SERVICIO(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+				$tempRequerimiento_referencia = 	$ordenServicio->__GET('requerimiento_referencia');
+				$tempInforme_referencia = 			$ordenServicio->__GET('informe_referencia');
+				$tempDescripcion = 					$ordenServicio->__GET('descripcion');
+				$tempImporte = 						$ordenServicio->__GET('importe');
+				$tempSub_total = 	$ordenServicio->__GET('sub_total');
+				$tempIgv =		$ordenServicio->__GET('igv');
+				$tempImporte_neto01 = 	$ordenServicio->__GET('importe_neto01');
+				$tempRetencion = 	$ordenServicio->__GET('retencion');
+				$tempImporte_neto02 =	$ordenServicio->__GET('importe_neto02');
+				$tempObservacion =	$ordenServicio->__GET('observacion');
+				$tempId_proveedor = 	$ordenServicio->__GET('id_proveedor')->__GET('id_proveedor');
+				$tempId_meta =	$ordenServicio->__GET('id_meta')->__GET('id_meta');
+				$tempId_tipoFactura = $ordenServicio->__GET('id_tipoFactura')->__GET('id_tipoFactura');
+				$tempId_tipoFactura = substr($tempId_tipoFactura, 0, 1);
+				$tempIdOrdenServicio =		$ordenServicio->__GET('id_ordenServicio');
+
+				$statement->bindParam(1, $tempRequerimiento_referencia);
+				$statement->bindParam(2, $tempInforme_referencia);
+				$statement->bindParam(3, $tempDescripcion);
+				$statement->bindParam(4, $tempImporte);
+				$statement->bindParam(5, $tempSub_total);
+				$statement->bindParam(6, $tempIgv);
+				$statement->bindParam(7, $tempImporte_neto01);
+				$statement->bindParam(8, $tempRetencion);
+				$statement->bindParam(9, $tempImporte_neto02);
+				$statement->bindParam(10, $tempObservacion);
+				$statement->bindParam(11, $tempId_proveedor);
+				$statement->bindParam(12, $tempId_meta);
+				$statement->bindParam(13, $tempId_tipoFactura);
+				$statement->bindParam(14, $tempIdOrdenServicio);
+
+				$statement->execute();
+				return $result;
+			}
+			catch(Exception $e)
+			{
+				die($e->getMessage());
+			}
+		}
 	}
 ?>
