@@ -408,3 +408,21 @@ END $$
 
 INSERT INTO tipos_facturas (id_tipoFactura, descripcion, porcentaje) VALUES (null, 'Sin retención', '0'),
 (null, 'Con retención', '8'), (null, 'IGV disgregado', '18'), (null, 'IGV incluido', '18'), (null, 'Sin IGV', '0');
+
+
+-----
+DELIMITER $$
+CREATE PROCEDURE up_buscar_meta_ajax(
+    IN IN_c1 VARCHAR(4)
+)
+BEGIN
+
+    IF IN_c1 IS NOT NULL AND IN_c1 != '' THEN 
+       
+       SELECT * FROM metas WHERE c1 = IN_c1;
+    
+    ELSE
+          signal sqlstate '45000' set message_text = 'Ingrese los datos de manera correcta!!!';
+    END IF;
+
+END $$

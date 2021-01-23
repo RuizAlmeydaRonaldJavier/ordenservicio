@@ -11,7 +11,12 @@
   require '../layout/header.php';
 
   $metaDAO = new MetaDAO();
-  $resultadoMeta = $metaDAO->listarMeta();
+  //$resultadoMeta = $metaDAO->listarMeta();
+
+  $meta = new Meta();
+
+  $meta->__SET('c1', '0001');
+  $resultadoMeta = $metaDAO->Buscar_meta_ajax($meta);
 ?>
 
 <br> 

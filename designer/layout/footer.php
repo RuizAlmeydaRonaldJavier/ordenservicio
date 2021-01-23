@@ -19,74 +19,20 @@
 <script type="text/javascript">
 
   //Buscar Ruc
-  $('#btnBuscarRuc').click(function(e){
-            var value = $("#inp_ruc").val().length;
-            if (value>0) {
-                buscarRucProveedor();
-            }else{
-                alert("Ingrese número de Ruc");
-            }
-        });
-    
-function buscarRucProveedor() {
-
-            var parametros = {
-                "ruc_proveedor": $('#inp_ruc').val()
-            };
-
-            $.ajax({
-                data: parametros,
-                url: '../ajax/buscar_proveedor.php',
-                type: 'post',
-                beforeSend: function() {
-                    $("#resultado").html("Procesando, espere por favor...");
-                },
-                success: function(data) {
-
-                    if (data.success === 1) {
-                        //alert("Proveedor encontrado.");
-                        $('#inp_ruc').css({'border':'1px solid green'});
-
-                        $('#inp_razon_social').val("" + data.data.razon_social);
-                        $('#inp_ruc').val(""+data.data.ruc);
-                        $('#inp_direccion').val("" + data.data.direccion);
-                        $('#inp_codigo').val("" + data.data.id_proveedor);
-                        $('#id_proveedor').val("" + data.data.id_proveedor); 
-
-                    } else {
-                        $('#inp_ruc').css({'border':'1px solid red'});
-
-                        $('#inp_razon_social').val("");
-                        $('#inp_ruc').val("");
-                        $('#inp_direccion').val("");
-                        $('#inp_codigo').val("");
-                        $('#id_proveedor').val("");
-                        alert("Proveedor no encontrado.");
-                        
-                    }
-
-                },
-                error: function() {
-
-                }
-            });
-        }
-
-  //Buscar Meta
-  $('#btnBuscarMeta').click(function(e)
+  $('#btnBuscarRuc').click(function(e)
   {
-    var value = $("#inp_meta").val().length;
+    var value = $("#inp_ruc").val().length;
     if (value > 0)
     {
-      buscarMeta();
+      buscarRucProveedor();
     }
     else
     {
-      alert("Ingrese número de Meta.");
+      alert("Ingrese número de Ruc.");
     }
   });
 
-  function buscarMeta()
+  function buscarRucProveedor()
   {
     var parametros = {
       "ruc_proveedor": $('#inp_ruc').val()
@@ -94,7 +40,7 @@ function buscarRucProveedor() {
 
     $.ajax({
       data: parametros,
-      url: '../ajax/buscar_meta.php',
+      url: '../ajax/buscar_proveedor.php',
       type: 'post',
       beforeSend: function()
       {
@@ -121,6 +67,67 @@ function buscarRucProveedor() {
           $('#inp_direccion').val("");
           $('#inp_codigo').val("");
           $('#id_proveedor').val("");
+          alert("Proveedor no encontrado.");
+        }
+      },
+      error: function()
+      {
+      }
+    });
+  }
+
+  //Buscar Meta
+  $('#btnBuscarMeta').click(function(e)
+  {
+    var value = $("#inp_c1").val().length;
+    if (value > 0)
+    {
+      buscarMeta();
+    }
+    else
+    {
+      alert("Ingrese número de meta.");
+    }
+  });
+
+  function buscarMeta()
+  {
+    var parametros = {
+      "meta_orden": $('#inp_c1').val()
+    };
+
+    console.log('un_nombre', parametros);
+
+    $.ajax({
+      data: parametros,
+      url: '../ajax/buscar_meta.php',
+      type: 'post',
+      beforeSend: function()
+      {
+        $("#resultado").html("Procesando, espere por favor...");
+      },
+      success: function(data)
+      {
+        console.log('un_nombre', data);
+        if (data.success === 1)
+        {
+          $('#inp_c1').css({'border':'1px solid green'});
+
+          $('#inp_c1').val("" + data.data.c1);
+          $('#inp_c2').val(""+data.data.c2);
+          $('#inp_c3').val("" + data.data.c3);
+          $('#inp_c10').val("" + data.data.c10);
+          $('#id_meta').val("" + data.data.id_meta);
+        }
+        else
+        {
+          $('#inp_c1').css({'border':'1px solid red'});
+
+          $('#inp_c1').val("");
+          $('#inp_c2').val("");
+          $('#inp_c3').val("");
+          $('#inp_c10').val("");
+          $('#id_meta').val("");
           alert("Meta no encontrada.");
         }
       },
