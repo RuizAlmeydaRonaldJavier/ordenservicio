@@ -49,6 +49,60 @@
 			}
 		}
 
+		// Listar ordenes de servicios
+		public function buscarOrdenServicio(OrdenServicio $ordenServicio)
+		{
+			try
+			{
+				$result = array();
+				$statement = $this->pdo->prepare("CALL UP_BUSCAR_ORDEN_SERVICIO(?)");
+
+				$tempId_ordenServicio = $ordenServicio->__GET('id_ordenServicio');
+
+				$statement->bindParam(1, $tempId_ordenServicio);
+
+				$statement->execute();
+				foreach($statement->fetchAll(PDO::FETCH_OBJ) as $r)
+				{
+					$ordenServicio = new OrdenServicio();
+					$ordenServicio->__SET('id_ordenServicio', $r->id_ordenServicio);
+					$ordenServicio->__SET('numero_ordenServicio', $r->numero_ordenServicio);
+					$ordenServicio->__SET('fecha', $r->fecha);
+					$ordenServicio->__SET('requerimiento_referencia', $r->requerimiento_referencia);
+					$ordenServicio->__SET('informe_referencia', $r->informe_referencia);
+					$ordenServicio->__SET('descripcion', $r->descripcion_servicio);
+					$ordenServicio->__SET('importe', $r->importe);
+					$ordenServicio->__SET('sub_total', $r->sub_total);
+					$ordenServicio->__SET('igv', $r->igv);
+					$ordenServicio->__SET('importe_neto01', $r->importe_neto01);
+					$ordenServicio->__SET('retencion', $r->retencion);
+					$ordenServicio->__SET('importe_neto02', $r->importe_neto02);
+					$ordenServicio->__SET('observacion', $r->observacion);
+					$ordenServicio->__SET('fecha_registro', $r->fecha_registro);
+					$ordenServicio->__SET('estado', $r->estado);
+					$ordenServicio->__GET('id_proveedor')->__SET('id_proveedor', $r->id_proveedor);
+					$ordenServicio->__GET('id_proveedor')->__SET('razon_social', $r->razon_social);
+					$ordenServicio->__GET('id_proveedor')->__SET('ruc', $r->ruc);
+					$ordenServicio->__GET('id_proveedor')->__SET('direccion', $r->direccion);
+					$ordenServicio->__GET('id_meta')->__SET('id_meta', $r->id_meta);
+					$ordenServicio->__GET('id_meta')->__SET('c1', $r->c1);
+					$ordenServicio->__GET('id_meta')->__SET('c2', $r->c2);
+					$ordenServicio->__GET('id_meta')->__SET('c3', $r->c3);
+					$ordenServicio->__GET('id_meta')->__SET('c10', $r->c10);
+					$ordenServicio->__GET('id_tipoFactura')->__SET('id_tipoFactura', $r->id_tipoFactura);
+					$ordenServicio->__GET('id_tipoFactura')->__SET('descripcion', $r->descripcion_factura);
+					$ordenServicio->__GET('id_tipoFactura')->__SET('porcentaje', $r->porcentaje);
+					
+					$result[] = $ordenServicio;
+				}
+				return $result;
+			}
+			catch(Exception $e)
+			{
+				die($e->getMessage());
+			}
+		}
+
 		// Registrar ordenes de servicios
 		public function registrarOrdenServicio(OrdenServicio $ordenServicio)
 		{

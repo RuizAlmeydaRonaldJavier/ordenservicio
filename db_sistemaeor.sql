@@ -494,3 +494,12 @@ CREATE PROCEDURE up_registrar_orden_servicio
   _descripcion, _importe, _sub_total, _igv, _importe_neto01, _retencion, _importe_neto02, _observacion, now(), '1', 
   _id_proveedor, _id_meta, _id_tipoFactura);
 END $$
+
+-- Procedimiento para buscar las ordenes de servicios
+DELIMITER $$
+CREATE PROCEDURE up_buscar_orden_servicio
+(
+  IN _id_ordenServicio                   INT(11)
+) BEGIN
+  SELECT *, ord.descripcion AS 'descripcion_servicio', tfa.descripcion AS 'descripcion_factura' FROM ordenes_servicios ord INNER JOIN proveedores pro ON ord.id_proveedor = pro.id_proveedor INNER JOIN metas met ON ord.id_meta = met.id_meta INNER JOIN tipos_facturas tfa ON ord.id_tipoFactura = tfa.id_tipoFactura WHERE ord.id_ordenServicio = _id_ordenServicio;
+END $$
