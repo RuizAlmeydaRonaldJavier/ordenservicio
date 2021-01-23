@@ -49,53 +49,49 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
 <br> 
 <div class="container">
   <div class="row">
-    <div class="col-12 border cont-from" style="background: white;">
+    <div class="col-12 border cont-from pr-5 pl-5" style="background: white;">
       <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post" enctype="multipart/form-data" >
         <div class="titulo-usuario mt-3 mb-3">
           <h5 class="text-center"><i class="fas fa-user-friends"></i> REGISTRAR ORDEN DE SERVICIO</h5>
         </div>
         <div class="pt-3 pr-2 pl-2 mb-2 pb-1 marco">
           <div class="row campo-altura">
-            <div class="col-5">
+            <div class="col-8">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
-                <div class="col-sm-5 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inp_codigo" name="inp_codigo" required="">
+                <label class="col-sm-2 col-form-label col-form-label-sm">Código:</label>
+                <div class="col-sm-2 pl-0">
+                  <input type="text" class="form-control form-control-sm" id="inp_codigo" name="inp_codigo" required="" disabled="">
                 </div>
               </div>
             </div>
             <div class="col-4">
-            </div>
-            <div class="col-3">
               <div class="form-group row">
-                <label class="col-sm-5 col-form-label col-form-label-sm text-right">Fecha:</label>
-                <div class="col-sm-7 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inp_fecha" name="inp_fecha" required="">
+                <label class="col-sm-6 col-form-label col-form-label-sm text-right">Fecha:</label>
+                <div class="col-sm-6 pl-0">
+                  <input type="text" class="form-control form-control-sm" id="inp_fecha" name="inp_fecha" required="" disabled="">
                 </div>
               </div>
             </div>
           </div>
           <div class="row campo-altura">
-            <div class="col-5">
+            <div class="col-8">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label col-form-label-sm">Ruc:</label>
-                <div class="col-sm-7 pl-0">
+                <label class="col-sm-2 col-form-label col-form-label-sm">Ruc:</label>
+                <div class="col-sm-3 pl-0">
                   <div class="input-group">
                   <input type="text" class="form-control form-control-sm" id="inp_ruc" name="inp_ruc"  maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
                   <input name="id_proveedor" id="id_proveedor" type="hidden">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc">Buscar</button>
+                    <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc"><i class="fas fa-search"></i></button>
                   </div>
                 </div>
                 </div>
               </div>
             </div>
             <div class="col-4">
-            </div>
-            <div class="col-3">
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label col-form-label-sm text-right">Tipo factura:</label>
-                <div class="col-sm-7 pl-0">
+                <label for="inputPassword" class="col-sm-6 col-form-label col-form-label-sm text-right">Tipo factura:</label>
+                <div class="col-sm-6 pl-0">
                   <select class="form-control btn-sm" id="id_tipofactura" name="id_tipofactura">
                     <?php foreach($resultado_tipoFactura as $r_g): ?>
                           <option value="<?php echo $r_g->__GET('id_tipoFactura').$r_g->__GET('porcentaje');?>">
@@ -108,35 +104,27 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             </div>
           </div>
           <div class="row campo-altura">
-            <div class="col-5">
+            <div class="col-8">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label col-form-label-sm pr-0">Razón Social:</label>
-                <div class="col-sm-9 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inp_razon_social" name="inp_razon_social">
+                <label class="col-sm-2 col-form-label col-form-label-sm pr-0">Razón Social:</label>
+                <div class="col-sm-6 pl-0">
+                  <input type="text" class="form-control form-control-sm" id="inp_razon_social" name="inp_razon_social" required="" disabled="">
                 </div>
               </div>
             </div>
             <div class="col-4">
             </div>
-            <div class="col-3">
-              <div class="form-group row">
-                <label class="col-sm-5 col-form-label col-form-label-sm pr-0"></label>
-                <div class="col-sm-7 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inp_porcentaje">
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row campo-altura">
-            <div class="col-5">
+            <div class="col-8">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label col-form-label-sm">Dirección:</label>
-                <div class="col-sm-9 pl-0">
-                  <input type="text" class="form-control form-control-sm" id="inp_direccion" name="inp_direccion">
+                <label class="col-sm-2 col-form-label col-form-label-sm">Dirección:</label>
+                <div class="col-sm-6 pl-0">
+                  <input type="text" class="form-control form-control-sm" id="inp_direccion" name="inp_direccion" required="" disabled="">
                 </div>
               </div>
             </div>
-            <div class="col-7">
+            <div class="col-4">
             </div>
           </div>
         </div>
@@ -144,7 +132,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           <div class="row campo-altura">
             <div class="col-12">
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label col-form-label-sm te">Requerimiento de ref.:</label>
+                <label class="col-sm-2 col-form-label col-form-label-sm te">Requerimiento:</label>
                 <div class="col-sm-10 pl-0">
                   <input type="text" class="form-control form-control-sm" id="inputPassword">
                 </div>
@@ -183,21 +171,19 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
         </div>
 
         <div class="row campo-altura">
-          <div class="col-5">
+          <div class="col-8">
             <div class="form-group row">
-              <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Meta:</label>
-              <div class="col-sm-5 pl-0">
+              <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm">Meta:</label>
+              <div class="col-sm-2 pl-0">
                 <div class="input-group">
                   <input id="inpAgrProve" type="text" class="form-control form-control-sm" maxlength="11" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
                   <input name="inpIdPersonaAgrUsu" id="inpIdPersonaAgrUsu" type="hidden">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc">Buscar</button>
+                    <button class="btn btn-outline-info btn-sm" type="button" name="btnBuscarRuc" id="btnBuscarRuc"><i class="fas fa-search"></i></button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-3">
           </div>
           <div class="col-4">
             <div class="form-group row">
@@ -209,15 +195,13 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           </div>
         </div>
         <div class="row campo-altura">
-          <div class="col-5">
+          <div class="col-8">
             <div class="form-group row">
-              <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
-              <div class="col-sm-5 pl-0">
-                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm">Función:</label>
+              <div class="col-sm-2 pl-0">
+                <input type="text" class="form-control form-control-sm" required="" disabled="">
               </div>
             </div>
-          </div>
-          <div class="col-3">
           </div>
           <div class="col-4">
             <div class="form-group row">
@@ -229,15 +213,13 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           </div>
         </div>
         <div class="row campo-altura">
-          <div class="col-5">
+          <div class="col-8">
             <div class="form-group row">
-              <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
-              <div class="col-sm-5 pl-0">
-                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm">Programa:</label>
+              <div class="col-sm-2 pl-0">
+                <input type="text" class="form-control form-control-sm" required="" disabled="">
               </div>
             </div>
-          </div>
-          <div class="col-3">
           </div>
           <div class="col-4">
             <div class="form-group row">
@@ -249,15 +231,13 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           </div>
         </div>
         <div class="row campo-altura">
-          <div class="col-5">
+          <div class="col-8">
             <div class="form-group row">
-              <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-sm">Código:</label>
-              <div class="col-sm-5 pl-0">
-                <input type="text" class="form-control form-control-sm" id="inputPassword">
+              <label for="inputPassword" class="col-sm-2 col-form-label col-form-label-sm">Descripción:</label>
+              <div class="col-sm-8 pl-0">
+                <input type="text" class="form-control form-control-sm" required="" disabled="">
               </div>
             </div>
-          </div>
-          <div class="col-3">
           </div>
           <div class="col-4">
             <div class="form-group row">

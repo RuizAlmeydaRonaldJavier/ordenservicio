@@ -17,6 +17,16 @@
 
 
 <script type="text/javascript">
+
+  //Buscar Ruc
+  $('#btnBuscarRuc').click(function(e){
+            var value = $("#inp_ruc").val().length;
+            if (value>0) {
+                buscarRucProveedor();
+            }else{
+                alert("Ingrese número de Ruc");
+            }
+        });
     
 function buscarRucProveedor() {
 
@@ -62,18 +72,63 @@ function buscarRucProveedor() {
             });
         }
 
-        $('#btnBuscarRuc').click(function(e){
-            var value = $("#inp_ruc").val().length;
-            if (value>0) {
-                buscarRucProveedor();
-            }else{
-                alert("Ingrese número de Ruc");
-            }
-        });
+  //Buscar Meta
+  $('#btnBuscarMeta').click(function(e)
+  {
+    var value = $("#inp_meta").val().length;
+    if (value > 0)
+    {
+      buscarMeta();
+    }
+    else
+    {
+      alert("Ingrese número de Meta.");
+    }
+  });
 
+  function buscarMeta()
+  {
+    var parametros = {
+      "ruc_proveedor": $('#inp_ruc').val()
+    };
 
+    $.ajax({
+      data: parametros,
+      url: '../ajax/buscar_meta.php',
+      type: 'post',
+      beforeSend: function()
+      {
+        $("#resultado").html("Procesando, espere por favor...");
+      },
+      success: function(data)
+      {
+        if (data.success === 1)
+        {
+          $('#inp_ruc').css({'border':'1px solid green'});
 
+          $('#inp_razon_social').val("" + data.data.razon_social);
+          $('#inp_ruc').val(""+data.data.ruc);
+          $('#inp_direccion').val("" + data.data.direccion);
+          $('#inp_codigo').val("" + data.data.id_proveedor);
+          $('#id_proveedor').val("" + data.data.id_proveedor);
+        }
+        else
+        {
+          $('#inp_ruc').css({'border':'1px solid red'});
 
+          $('#inp_razon_social').val("");
+          $('#inp_ruc').val("");
+          $('#inp_direccion').val("");
+          $('#inp_codigo').val("");
+          $('#id_proveedor').val("");
+          alert("Meta no encontrada.");
+        }
+      },
+      error: function()
+      {
+      }
+    });
+  }
 </script>
 
 <!--<script type="text/javascript">
