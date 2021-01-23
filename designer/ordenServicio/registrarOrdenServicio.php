@@ -54,7 +54,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
         <div class="titulo-usuario mt-3 mb-3">
           <h5 class="text-center"><i class="fas fa-user-friends"></i> REGISTRAR ORDEN DE SERVICIO</h5>
         </div>
-        <div class="pt-3 pr-2 pl-2 mb-2 pb-1 marco">
+        <div class="pt-4 pr-2 pl-2 mb-2 pb-3 marco">
           <div class="row campo-altura">
             <div class="col-8">
               <div class="form-group row">
@@ -128,7 +128,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             </div>
           </div>
         </div>
-        <div class="pt-3 pr-2 pl-2 mb-2 pb-1 marco">
+        <div class="pt-4 pr-2 pl-2 mb-2 pb-3 marco">
           <div class="row campo-altura">
             <div class="col-12">
               <div class="form-group row">
@@ -160,12 +160,12 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
           </div>
         </div>
         </div>
-        <div class="pt-3 pr-2 pl-2 mb-2 pb-1 marco">
+        <div class="pt-4 pr-2 pl-2 mb-2 pb-3 marco">
         <div class="row">
           <div class="col-12">
             <div class="form-group">
               <label class="col-form-label-sm" for="exampleFormControlTextarea1">Descripción del servicio:</label>
-              <textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="5"></textarea>
+              <textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="7"></textarea>
             </div>
           </div>
         </div>
@@ -204,10 +204,16 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             </div>
           </div>
           <div class="col-4">
-            <div class="form-group row">
+            <div class="form-group row" style="display: none;" id="div_subTotal">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">Sub Total:</label>
               <div class="col-sm-6 pl-0">
                 <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_subTotal" name="inp_subTotal" disabled="">
+              </div>
+            </div>
+            <div class="form-group row" id="div_retencion">
+              <label class="col-sm-6 col-form-label col-form-label-sm text-right">Retención:</label>
+              <div class="col-sm-6 pl-0">
+                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_retencion" name="inp_retencion" disabled="">
               </div>
             </div>
           </div>
@@ -222,10 +228,16 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             </div>
           </div>
           <div class="col-4">
-            <div class="form-group row">
+            <div class="form-group row" style="display: none;" id="div_igv">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">I.G.V:</label>
               <div class="col-sm-6 pl-0">
                 <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_igv" name="inp_igv" disabled="">
+              </div>
+            </div>
+            <div class="form-group row" id="div_importeNeto02">
+              <label class="col-sm-6 col-form-label col-form-label-sm text-right">Importe neto:</label>
+              <div class="col-sm-6 pl-0">
+                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right; font-weight: bold;" id="inp_importeNeto02" name="inp_importeNeto02" disabled="">
               </div>
             </div>
           </div>
@@ -240,15 +252,15 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
             </div>
           </div>
           <div class="col-4">
-            <div class="form-group row">
+            <div class="form-group row" style="display: none;" id="div_importeNeto01">
               <label class="col-sm-6 col-form-label col-form-label-sm text-right">Importe neto:</label>
               <div class="col-sm-6 pl-0">
-                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right;" id="inp_importeNeto01" name="inp_importeNeto01" disabled="">
+                <input type="text" class="form-control form-control-sm" align="right" style="text-align:right; font-weight: bold;" id="inp_importeNeto01" name="inp_importeNeto01" disabled="">
               </div>
             </div>
           </div>
         </div>
-        <div class="row campo-altura">
+        <!--<div class="row campo-altura">
           <div class="col-8">
           </div>
           <div class="col-4">
@@ -271,7 +283,7 @@ $resultado_tipoFactura = $tipos_facturasDAO->listarTipoFactura();
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
         <button name="btnGuardar" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
         <a href="./lista_atencion.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
